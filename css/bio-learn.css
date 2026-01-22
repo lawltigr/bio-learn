@@ -31,3 +31,24 @@ header{
     text-decoration: none;
     font-weight: bold;
 }
+.test-container {
+    max-width: 600px;
+    margin: 30px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+#options button{
+    display: block;
+    width: 100%;
+    margin: 8px 0;
+    padding: 10px;
+    border: none;
+    background: #e8f5e9;
+    cursor: pointer;
+    border-radius: 5px;
+}
+#options button:hover{
+    background: #c8e6c9;
+}

@@ -16,7 +16,7 @@ function renderTopics(list){
 
 searchInput.addEventListener("input", () => {
     const value = searchInput.value.toLowerCase();
-    const filtered = topics.Data.filter(t => t.title.toLowerCase().includes(value));
+    const filtered = topicsData.filter(t => t.title.toLowerCase().includes(value));
     renderTopics(filtered);
 });
 renderTopics(topicsData);
