@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bio-learn.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <h1>Analytics of your learning</h1>
+    </header>
+    <main class="analytics">
+        <section class="stats">
+            <div class="stat-card" id="totalTests">Tests taken: 0</div>
+            <div class="stat-card" id="avgScore">Average score: 0%</div>
+        </section>
+        <section>
+            <h2>Results by themes</h2>
+            <canvas id="topicChart"></canvas>
+        </section>
+        <section>
+            <h2>Progress over time</h2>
+            <canvas id="progressChart"></canvas>
+        </section>
+        <section>
+            <h2>Accuracy of the answers</h2>
+            <canvas id="pieChart"></canvas>
+        </section>
+        <section>
+            <h2>Attempt history</h2>
+            <table id="resultsTable">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Theme</th>
+                        <th>Result</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </section>
+    </main>
+
+    <script src="js/analytics.js"></script>
+</body>
+</html>
