@@ -5,6 +5,10 @@ totalTestsEl.textContent = `Tests taken: ${tests.length}`;
 const avg = tests.reduce((sum, t) => sum + t.percent, 0) / (tests.length || 1);
 avgScoreEl.textContent = `Average score: ${Math.round(avg)}%`;
 const tbody = document.querySelector("#resultsTable tbody");
+const recommendationsEl = document.getElementById("recommendations");
+const WEAK_THRESHOLD = 70;
+let hasWeakTopics = false;
+
 tests.forEach(t => {
     const tr = document.createElement("tr");
     tr.innerHTML = `
@@ -15,16 +19,17 @@ tests.forEach(t => {
 })
 const topicMap = {};
 tests.forEach(t=> {
-    if (topicMap[t.topic]){
+    if (!topicMap[t.topic]){
         topicMap[t.topic]=[];
     }
+    if (!t.topic) return;
     topicMap[t.topic].push(t.percent);
 });
 const topicLabels = Object.keys(topicMap);
 const topicValues = topicLabels.map(
     k => topicMap[k].reduce((a,b)=>a+b, 0) / topicMap[k].length
 );
-newChart(document.getElementById("topicChart"), {
+new Chart(document.getElementById("topicChart"), {
     type: "bar",
     data: {
         labels: topicLabels,
@@ -37,7 +42,7 @@ newChart(document.getElementById("topicChart"), {
 
 const dates = tests.map(t => t.date);
 const scores = tests.map(t=> t.percent);
-new CharacterData(document.getElementById("progressChart"), {
+new Chart(document.getElementById("progressChart"), {
     type: "line",
     data: {
         labels: dates,
