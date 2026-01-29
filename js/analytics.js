@@ -26,10 +26,41 @@ const topicValues = topicLabels.map(
 );
 newChart(document.getElementById("topicChart"), {
     type: "bar",
+    data: {
+        labels: topicLabels,
+        datasets: [{
+            label: "Score (%)",
+            data: topicValues
+        }]
+    }
 })
 
 const dates = tests.map(t => t.date);
 const scores = tests.map(t=> t.percent);
 new CharacterData(document.getElementById("progressChart"), {
     type: "line",
+    data: {
+        labels: dates,
+        datasets: [{
+            label: "Progress (%)",
+            data: scores,
+            tension: 0.3
+        }]
+    }
 })
+
+let correct = 0;
+let incorrect = 0;
+tests.forEach(t => {
+    correct += t.score;
+    incorrect += t.total - t.score;
+});
+new Chart(document.getElementById("pieChart"), {
+    type: "pie",
+    data: {
+        labels: ["Correct", "Incorrect"],
+        datasets: [{
+            data: [correct, incorrect]
+        }]
+    }
+});
