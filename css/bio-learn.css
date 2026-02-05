@@ -112,3 +112,16 @@ h1{
     margin: 8px 0;
     border-radius: 4px;
 }
+
+#exportCSV {
+    margin-top: 10px;
+    padding: 10px 16px;
+    background: #2e7d32;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+#exportCSV:hover {
+    background: #1b5e20;
+}

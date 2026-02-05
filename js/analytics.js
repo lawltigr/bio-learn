@@ -100,3 +100,32 @@ new Chart(document.getElementById("pieChart"), {
         }]
     }
 });
+
+const exportBtn = document.getElementById("exportCSV");
+
+function downloadCSV(content, filename){
+    const blob = new Blob([content], { type: "text/csv; charset=utf-8;"});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = filename;
+    a.click();
+    URL.revokeObjectURL(url);
+}
+
+exportBtn.addEventListener("click", () => {
+    const WEAK_THRESHOLD = 70;
+    let csv = "Topic, Last attempt (%), Recommendation\n";
+    let hasData = false;
+
+    Object.entries(lastAttempts).forEach(([topic, percent]) => {
+        if (percent < WEAK_THRESHOLD) {
+            hasData = true;
+            csv += `${topic}, ${percent}, Repeat the topic\n`;
+        }
+    });
+    if (!hasData) {
+        csv += "All topics, 100, No weak topics\n";
+    }
+    downloadCSV(csv, "learning_recommendations.csv");
+})

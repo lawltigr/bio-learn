@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/bio-learn.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Learning Analytics Report</h1>
+        <p>Automated analysis of learning outcomes</p>
+    </header>
+    <main class="report">
+        <section>
+            <h2>1. Introduction</h2>
+            <p>This report presents an automated analysis of the learner's performance based on quiz attempts within the BioLearn platform. The goal is to identify weak knowledge areas and provide personalized recommendations.</p>
+        </section>
+        <section>
+            <h2>2. Data Description</h2>
+            <p id="datainfo"></p>
+        </section>
+        <section>
+            <h2>3. Performance Analysis</h2>
+            <h3>Results by Topic</h3>
+            <canvas id="topicChart"></canvas>
+            <h3>Learning Progress Over Time</h3>
+            <canvas id="progressChart"></canvas>
+        </section>
+        <section>
+            <h2>4. Identified Weak Topics</h2>
+            <ul id="weakTopics"></ul>
+        </section>
+        <section>
+            <h2>5. Conclusions</h2>
+            <p id="conclusions"></p>
+        </section>
+    </main>
+    <script src="js/report.js"></script>
+</body>
+</html>
