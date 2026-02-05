@@ -8,6 +8,37 @@ const tbody = document.querySelector("#resultsTable tbody");
 const recommendationsEl = document.getElementById("recommendations");
 const WEAK_THRESHOLD = 70;
 let hasWeakTopics = false;
+const topicMap = {};
+const topicLabels = Object.keys(topicMap);
+const lastAttempts ={};
+tests.forEach(t => {
+    lastAttempts[t.topic] = t.percent;
+});
+Object.entries(lastAttempts).forEach(([topic, percent]) => {
+    if (percent < 70) {
+        const li = document.createElement("li");
+        li.textContent = `You should repeat "${topic}" (last attempt: ${percent}%)`;
+        recommendationsEl.appendChild(li);
+    }
+});
+
+// topicLabels.forEach((topic, index) => {
+//     const avgScore = topicValues[index];
+
+//     if (avgScore < WEAK_THRESHOLD) {
+//         hasWeakTopics = true;
+
+//         const li = document.createElement("li");
+//         li.textContent = `You should review the topic "${topic}" (average score: ${Math.round(avgScore)}%)`;
+//         recommendationsEl.appendChild(li);
+//     }
+    
+// });
+// if (!hasWeakTopics) {
+//     const li = document.createElement("li");
+//     li.textContent = "Great job! You have no weak topics";
+//     recommendationsEl.appendChild(li);
+// }
 
 tests.forEach(t => {
     const tr = document.createElement("tr");
@@ -17,7 +48,7 @@ tests.forEach(t => {
     <td>${t.percent}%</td>`;
     tbody.appendChild(tr);
 })
-const topicMap = {};
+
 tests.forEach(t=> {
     if (!topicMap[t.topic]){
         topicMap[t.topic]=[];
@@ -25,7 +56,7 @@ tests.forEach(t=> {
     if (!t.topic) return;
     topicMap[t.topic].push(t.percent);
 });
-const topicLabels = Object.keys(topicMap);
+
 const topicValues = topicLabels.map(
     k => topicMap[k].reduce((a,b)=>a+b, 0) / topicMap[k].length
 );

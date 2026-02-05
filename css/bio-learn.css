@@ -100,3 +100,15 @@ canvas{
 h1{
     margin-top: 0;
 }
+
+#recommendations {
+    list-style: none;
+    padding: 0;
+}
+#recommendations li{
+    background: #fff3cd;
+    border-left: 5x solid #ff9800;
+    padding: 12px;
+    margin: 8px 0;
+    border-radius: 4px;
+}
