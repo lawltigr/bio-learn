@@ -125,3 +125,23 @@ h1{
 #exportCSV:hover {
     background: #1b5e20;
 }
+
+.report {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 20px;
+    background: white;
+}
+.report section {
+    margin-bottom: 30px;
+}
+.report h2{
+    border-bottom: 2px solid #2e7d32;
+    padding-bottom: 5px;
+}
+.report ul li{
+    background: #fff3cd;
+    padding: 10px;
+    margin: 6px 0;
+    border-left: 5px solid #ff9800;
+}
