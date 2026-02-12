@@ -67,3 +67,34 @@ conclusionEl.textContent =
         ? "The analysis shows a stable level of knowledge across all topics. No critical learning gaps were detected."
         : `The analysis identified ${weakCount} topic(s) requiring additional attention. Personalized recommendations were generated based on the learner's most recent performance.`;
 
+const downloadBtn = document.getElementById("downloadPDF");
+downloadBtn.addEventListener("click", () =>{
+    window.print();
+});
+
+const comparisonBody = document.querySelector("#comparisonTable tbody");
+const topicAttempts = {};
+tests.forEach(t=> {
+    if (!topicattempts[t.topic]) {
+        topicAttempts[t.topic] = [];
+    }
+    topicAttempts[t.topis].push(t.percent);
+});
+
+Object.entries(topicAttempts).forEach(([topic, scores]) =>{
+    if(scores.length < 2) return;
+    const before = scores[0];
+    const after = scores[scores.length - 1];
+    const improvement = after-before;
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+        <td>${topic}</td>
+        <td>${before}</td>
+        <td>${after}</td>
+        <td styl="color:${improvement>= 0 ? 'green' : 'red'}>
+            ${improvement>= 0 ? '+' : ''}${improvement}%
+        </td>
+    `;
+    comparisonBody.appendChild(tr);
+});
+

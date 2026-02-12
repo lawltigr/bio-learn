@@ -9,8 +9,11 @@
 </head>
 <body>
     <header>
+        <a href="bio-learn.html" class="btn">go to the main page</a>
+        <a href="analytics.html" class="btn">go to the analytics page</a>
         <h1>Learning Analytics Report</h1>
         <p>Automated analysis of learning outcomes</p>
+        <button id="downloadPDF">Download report as PDF</button>
     </header>
     <main class="report">
         <section>
@@ -33,7 +36,21 @@
             <ul id="weakTopics"></ul>
         </section>
         <section>
-            <h2>5. Conclusions</h2>
+            <h2>5. Before / After Comparison</h2>
+            <table id="comparisonTable">
+                <thead>
+                    <tr>
+                        <th>Topic</th>
+                        <th>Before (%)</th>
+                        <th>After (%)</th>
+                        <th>Improvement</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </section>
+        <section>
+            <h2>6. Conclusions</h2>
             <p id="conclusions"></p>
         </section>
     </main>
