@@ -75,10 +75,10 @@ downloadBtn.addEventListener("click", () =>{
 const comparisonBody = document.querySelector("#comparisonTable tbody");
 const topicAttempts = {};
 tests.forEach(t=> {
-    if (!topicattempts[t.topic]) {
+    if (!topicAttempts[t.topic]) {
         topicAttempts[t.topic] = [];
     }
-    topicAttempts[t.topis].push(t.percent);
+    topicAttempts[t.topic].push(t.percent);
 });
 
 Object.entries(topicAttempts).forEach(([topic, scores]) =>{
@@ -91,7 +91,7 @@ Object.entries(topicAttempts).forEach(([topic, scores]) =>{
         <td>${topic}</td>
         <td>${before}</td>
         <td>${after}</td>
-        <td styl="color:${improvement>= 0 ? 'green' : 'red'}>
+        <td style="color:${improvement>= 0 ? 'green' : 'red'}">
             ${improvement>= 0 ? '+' : ''}${improvement}%
         </td>
     `;
