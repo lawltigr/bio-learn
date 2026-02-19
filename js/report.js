@@ -104,8 +104,17 @@ Object.entries(topicAttempts).forEach(([topic, scores])=>{
     if (scores.length<2) return;
     const pre = scores[0];
     const post = scores[scores.length-1];
-    if (pre >= 100) return;
+    if (pre >= 100) {
+        if (post < 100) {
+            totalGain += -1;
+        validTopics++;
+        }
+        return;
+    }
+
     const gain = (post - pre) / (100 - pre)
+    totalGain += gain;
+    validTopics ++;
 });
 
 let normalizedGain = 0;
@@ -122,11 +131,11 @@ if (validTopics === 0) {
     gainEl.textContent = "Learning gain cannot be calculated because initial scores were already at maximum (100%).";
 } else {
     gainEl.textContent = `Normalized learning gain (Hake index): ${normalizedGain.toFixed(2)}.`;
-}
 if (normalizedGain < 0.3) {
     gainEl.textContent += "Low learning gain detected.";
 } else if (normalizedGain < 0.7) {
     gainEl.textContent += "Moderate improvement observed.";
 } else {
     gainEl.textContent += "High learning gain Achieved.";
+}
 }
