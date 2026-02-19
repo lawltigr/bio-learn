@@ -17,7 +17,7 @@ const topicsData =[
             {
                 q: "Which structures contain genetic material?",
                 options:["Nucleus", "Mitochindria", "Ribosome"],
-                answers: [0, 1]
+                answers: [0, 2]
 
             }
         ]
