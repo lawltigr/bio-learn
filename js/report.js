@@ -98,3 +98,27 @@ Object.entries(topicAttempts).forEach(([topic, scores]) =>{
     comparisonBody.appendChild(tr);
 });
 
+let totalPre=0;
+let totalPost=0;
+let topicCount=0;
+Object.entries(topicAttempts).forEach(([topic, scores])=>{
+    if (scores.length<2) return;
+    const pre=scores[0];
+    const post = scores[scores.length-1];
+    totalPre += pre;
+    totalPost+= post;
+    topicCount++;
+});
+
+let normalizedGain = 0;
+if (topicCount>0) {
+    const avgPre = totalPre/ topicCount;
+    const avgPost = totalPost / topicCount;
+    normalizedGain = (avgPost - avgPre) / (100 - avgPre);
+}
+const gainEl = document.getElementById("learningGain");
+if (topicCount === 0) {
+    gainEl.textContent = "Insufficient repeated attempts to calculate learning gain."
+} else {
+    gainEl.textContent = `Normalized learning gain (Hake index): ${normalizedGain.toFixed(2)}. This indicates the proportion of potential improvement achieved by learning.`
+}
