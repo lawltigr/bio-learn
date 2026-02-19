@@ -98,27 +98,35 @@ Object.entries(topicAttempts).forEach(([topic, scores]) =>{
     comparisonBody.appendChild(tr);
 });
 
-let totalPre=0;
-let totalPost=0;
-let topicCount=0;
+let totalGain = 0;
+let validTopics = 0;
 Object.entries(topicAttempts).forEach(([topic, scores])=>{
     if (scores.length<2) return;
-    const pre=scores[0];
+    const pre = scores[0];
     const post = scores[scores.length-1];
-    totalPre += pre;
-    totalPost+= post;
-    topicCount++;
+    if (pre >= 100) return;
+    const gain = (post - pre) / (100 - pre)
 });
 
 let normalizedGain = 0;
-if (topicCount>0) {
-    const avgPre = totalPre/ topicCount;
-    const avgPost = totalPost / topicCount;
-    normalizedGain = (avgPost - avgPre) / (100 - avgPre);
+if (validTopics >0) {
+    normalizedGain = totalGain / validTopics;
 }
+// if (topicCount>0) {
+//     const avgPre = totalPre/ topicCount;
+//     const avgPost = totalPost / topicCount;
+//     normalizedGain = (avgPost - avgPre) / (100 - avgPre);
+// }
 const gainEl = document.getElementById("learningGain");
-if (topicCount === 0) {
-    gainEl.textContent = "Insufficient repeated attempts to calculate learning gain."
+if (validTopics === 0) {
+    gainEl.textContent = "Learning gain cannot be calculated because initial scores were already at maximum (100%).";
 } else {
-    gainEl.textContent = `Normalized learning gain (Hake index): ${normalizedGain.toFixed(2)}. This indicates the proportion of potential improvement achieved by learning.`
+    gainEl.textContent = `Normalized learning gain (Hake index): ${normalizedGain.toFixed(2)}.`;
+}
+if (normalizedGain < 0.3) {
+    gainEl.textContent += "Low learning gain detected.";
+} else if (normalizedGain < 0.7) {
+    gainEl.textContent += "Moderate improvement observed.";
+} else {
+    gainEl.textContent += "High learning gain Achieved.";
 }
