@@ -6,6 +6,9 @@ const questionEl = document. getElementById("question");
 const optionsEl = document.getElementById("options");
 const resultEl = document.getElementById("result");
 const nextBtn = document.getElementById("nextBtn");
+const modal = document.getElementById("imageModal");
+const modalimg = document.getElementById("modalImg");
+const closeModal = document.getElementById("closeModal");
 
 let current = 0;
 let score = 0;
@@ -13,8 +16,11 @@ titleEl.textContent = topic.title;
 
 function showQuestion(){
     const q = topic.questions[current];
-    questionEl.textContent = q.q;
-    optionsEl.innerHTML = "";
+    optionsEl.innerHTML = `
+        <p>${q.q}</p>
+        ${q.image ? `<img src="${q.image}" class="question-image">` : ""}
+    `;
+
 
     q.options.forEach((opt,i) => {
         const btn = document.createElement("button");
@@ -58,3 +64,21 @@ function saveResult(percent){
     localStorage.setItem("tests", JSON.stringify(data));
 }
 showQuestion();
+
+document.addEventListener("click", function(e){
+    if (e.target.classList.contains("question-image")){
+        modalimg.src = e.target.src;
+        modal.classList.add("active");
+    }
+    if (e.target === modal){
+        modal.classList.remove("active");
+    }
+});
+closeModal.onclick = function(){
+    modal.classList.remove("active");
+};
+modal.onclick = function(e){
+    if (e.target === modal){
+        modal.style.display = "none";
+    }
+};

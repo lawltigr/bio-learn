@@ -2,7 +2,7 @@ const topicsData =[
     {
         id: "cell",
         title: "Cell",
-        description: "Anatommy and functions of the cell",
+        description: "Anatomy and functions of the cell",
         questions: [
             {
                 q: "Powerhouse of the cell is ___",
@@ -32,7 +32,13 @@ const topicsData =[
                 q: "What shape DNA is?",
                 options: ["Linear", "Double helix", "Circle"],
                 answer: 1
-            }   
+            },
+            {
+                q: "Identify the organelle shown in the image:",
+                image: "image/mitochondria.png",
+                options: ["Ribosome", "Mitochondria", "Golgi apparatus"],
+                answer: 1
+            }
         ]
     },
     {

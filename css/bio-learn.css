@@ -173,3 +173,54 @@ h1{
     padding: 8px;
     text-align: center;
 }
+.question-image {
+    max-width: 300px;
+    display: block;
+    margin: 10px 0;
+    border-radius: 6px;
+}
+.modal{
+    display: flex;
+    position: fixed;
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    inset: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+    background-color: rgba(0,0,0,0.8);
+}
+.modal.active{
+    opacity: 1;
+    visibility: visible;
+}
+.modal-inner{
+    position: relative;
+}
+.modal-content{
+    margin: auto;
+    display: block;
+    max-width: 60vw;
+    max-height: 70vh;
+    transform: scale(0.7);
+    transition: transform 0.3s ease;
+    border-radius: 8px;
+}
+.modal.active .modal-content{
+    transform: scale(1);
+}
+.question-image {
+    cursor: zoom-in;
+    transition: transform 0.2s ease;
+}
+.question-image:hover {
+    transform: scale(1.05);
+}
+#closeModal{
+    position: absolute;
+    top: -30px;
+    right: -30px;
+    color: white;
+    font-size: 40px;
+    cursor: pointer;
+}
