@@ -197,12 +197,16 @@ h1{
 }
 .modal-inner{
     position: relative;
+    max-width: 70vw;
+    max-height: 80vh;
 }
 .modal-content{
     margin: auto;
     display: block;
-    max-width: 60vw;
-    max-height: 70vh;
+    max-width: 100%;
+    max-height: 80vh;
+    width: auto;
+    height: auto;
     transform: scale(0.7);
     transition: transform 0.3s ease;
     border-radius: 8px;
