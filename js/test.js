@@ -77,8 +77,3 @@ document.addEventListener("click", function(e){
 closeModal.onclick = function(){
     modal.classList.remove("active");
 };
-modal.onclick = function(e){
-    if (e.target === modal){
-        modal.style.display = "none";
-    }
-};
