@@ -26,7 +26,7 @@ function showQuestion(){
         <p>${q.q}</p>
         ${q.image ? `<img src="${q.image}" class="question-image">` : ""}
     `;
-
+//change the inner html
 
     q.options.forEach((opt,i) => {
         const btn = document.createElement("button");
@@ -105,7 +105,7 @@ function showNext(){
     modalimg.src = imageList[currentImgIndex];
 }
 prevBtn.onclick = (e) => { e.stopPropagation(); showPrev(); };
-nextBtnIng.onclick = (e) => { e.stopPropagation(); showNext(); };
+nextBtnImg.onclick = (e) => { e.stopPropagation(); showNext(); };
 
 document.addEventListener("keydown", (e) => {
     if (!modal.classList.contains("active")) return;

@@ -42,7 +42,7 @@ const topicsData =[
         ]
     },
     {
-        id: "",
+        id: "RNA",
         title: "DNA",
         description: "Genetic information of the organism",
         questions: [
@@ -53,8 +53,7 @@ const topicsData =[
             },
             {
                 q: "Which of the pictures is mRna?",
-                image: "image/mRna.png",
-                image: "image/tRna.png",
+                images: ["image/mRna.png", "image/tRna.png"],
                 options: [1, 2],
                 answer: 0
             }
