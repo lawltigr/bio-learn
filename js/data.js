@@ -50,7 +50,33 @@ const topicsData =[
                 q: "What shape DNA is?",
                 options: ["Linear", "Double helix", "Circle"],
                 answer: 1
-            }   
+            },
+            {
+                q: "Which of the pictures is mRna?",
+                image: "image/mRna.png",
+                image: "image/tRna.png",
+                options: [1, 2],
+                answer: 0
+            }
         ] 
+    }, 
+    {
+        id: "bioshpere",
+        title: "Biosphere",
+        description: "life on Earth",
+        questions: [
+            {
+                q: "Where does all energy come from?",
+                options: ["Plants", "Sun", "Wind"],
+                answer: 1
+            },
+            {
+                q: "Which of the following considered to be in the base level on the pyramid on the picture?",
+                image: "image/Ecological_Pyramid.png",
+                options: ["A wolf", "A mushroom", "Grass"],
+                answer: 2
+            }
+            
+        ]
     }
 ]

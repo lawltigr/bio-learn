@@ -229,3 +229,24 @@ h1{
     font-size: 40px;
     cursor: pointer;
 }
+.nav-btn{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    font-size: 28px;
+    line-height: 44px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.85);
+}
+.nav-btn.prev{ left: -60px; }
+.nav-btn.next{ right: -60px; }
+
+@media(max-width: 600px){
+    .nav-btn.prev{ left: 10px; }
+    .nav-btn.next{ right: 10px; }
+}

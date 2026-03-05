@@ -9,6 +9,12 @@ const nextBtn = document.getElementById("nextBtn");
 const modal = document.getElementById("imageModal");
 const modalimg = document.getElementById("modalImg");
 const closeModal = document.getElementById("closeModal");
+const prevBtn = document.getElementById("prevImg");
+const nextBtnImg = document.getElementById("nextImg");
+const imageList = topic.questions
+.map(q => q.image)
+.filter(Boolean);
+let currentImgIndex = 0;
 
 let current = 0;
 let score = 0;
@@ -67,8 +73,7 @@ showQuestion();
 
 document.addEventListener("click", function(e){
     if (e.target.classList.contains("question-image")){
-        modalimg.src = e.target.src;
-        modal.classList.add("active");
+        openModalBySrc(e.target.getAttribute("src"));
     }
     if (e.target === modal){
         modal.classList.remove("active");
@@ -77,3 +82,34 @@ document.addEventListener("click", function(e){
 closeModal.onclick = function(){
     modal.classList.remove("active");
 };
+
+function openModalBySrc(src) {
+    currentImgIndex = Math.max(0, imageList.indexOf(src));
+    modalimg.src = imageList[currentImgIndex];
+    modal.classList.add("active");
+    updateNavButtons();
+}
+function updateNavButtons(){
+    const many = imageList.length > 1;
+    prevBtn.style.display = many ? "block" : "none";
+    nextBtnImg.style.display = many ? "block" : "none";
+}
+function showPrev(){
+    if (!imageList.length) return;
+    currentImgIndex = (currentImgIndex - 1 + imageList.length) % imageList.length;
+    modalimg.src = imageList[currentImgIndex];
+}
+function showNext(){
+    if (!imageList.length) return;
+    currentImgIndex = (currentImgIndex + 1) % imageList.length;
+    modalimg.src = imageList[currentImgIndex];
+}
+prevBtn.onclick = (e) => { e.stopPropagation(); showPrev(); };
+nextBtnIng.onclick = (e) => { e.stopPropagation(); showNext(); };
+
+document.addEventListener("keydown", (e) => {
+    if (!modal.classList.contains("active")) return;
+    if (e.key === "Escape") modal.classList.remove("active");
+    if (e.key === "ArrowLeft") showPrev();
+    if (e.key === "ArrowRight") showNext();
+})
