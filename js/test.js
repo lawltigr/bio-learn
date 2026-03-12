@@ -2,7 +2,7 @@ const params = new URLSearchParams(window.location.search);
 const topicId = params.get("topic");
 const topic = topicsData.find(t=> t.id === topicId);
 const titleEl = document.getElementById("topicTitle");
-const questionEl = document. getElementById("question");
+const questionEl = document.getElementById("question");
 const optionsEl = document.getElementById("options");
 const resultEl = document.getElementById("result");
 const nextBtn = document.getElementById("nextBtn");
@@ -11,14 +11,16 @@ const modalimg = document.getElementById("modalImg");
 const closeModal = document.getElementById("closeModal");
 const prevBtn = document.getElementById("prevImg");
 const nextBtnImg = document.getElementById("nextImg");
-const imageList = topic.questions
-.map(q => q.image)
-.filter(Boolean);
+const imageList = topic.questions.map(q => q.image).filter(Boolean);
 let currentImgIndex = 0;
 
 let current = 0;
 let score = 0;
 titleEl.textContent = topic.title;
+if (!topic) {
+    questionEl.innerHTML = "Topic not found";
+    throw new Error("Topic not found");
+}
 
 function showQuestion(){
     const q = topic.questions[current];

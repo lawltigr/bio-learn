@@ -42,8 +42,8 @@ const topicsData =[
         ]
     },
     {
-        id: "RNA",
-        title: "DNA",
+        id: "rna",
+        title: "RNA",
         description: "Genetic information of the organism",
         questions: [
             {
