@@ -53,9 +53,15 @@ const topicsData =[
             },
             {
                 q: "Which of the pictures is mRna?",
-                images: ["image/mRna.png", "image/tRna.png"],
+                images: ["image/mRna.png", "image/tRna.jpeg"],
                 options: ["Image 1", "Image 2"],
                 answer: 0
+            },
+            {
+                q: "Which of the structures on the pictures are located in the core?",
+                images: ["image/mRna.png", "image/dna.png", "image/tRna.jpeg"],
+                options: ["Image 1", "Image 2", "Image 3"],
+                answer: 1
             }
         ] 
     }, 

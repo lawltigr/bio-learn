@@ -11,7 +11,11 @@ const modalimg = document.getElementById("modalImg");
 const closeModal = document.getElementById("closeModal");
 const prevBtn = document.getElementById("prevImg");
 const nextBtnImg = document.getElementById("nextImg");
-const imageList = topic.questions.map(q => q.image).filter(Boolean);
+const imageList = topic.questions.flatMap(q=>{
+    if (q.images) return q.images;
+    if (q.image) return [q.image];
+    return[];
+});
 let currentImgIndex = 0;
 
 let current = 0;
@@ -29,9 +33,9 @@ function showQuestion(){
         html += `<img src="${q.image}" class="question.image">`;
     }
     if (q.images) {
-        html += `<div class="image-row'>`;
+        html += `<div class="image-row">`;
         q.images.forEach((img,i)=>{
-            html += `<img src=${img} class="question-image>`; 
+            html += `<img src=${img} class="question-image">`; 
         });
         html += `</div>`;
     }
