@@ -26,7 +26,7 @@ function showQuestion(){
         <p>${q.q}</p>
         ${q.image ? `<img src="${q.image}" class="question-image">` : ""}
     `;
-//change the inner html
+    optionsEl.innerHTML = "";
 
     q.options.forEach((opt,i) => {
         const btn = document.createElement("button");
