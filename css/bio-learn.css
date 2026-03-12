@@ -246,6 +246,16 @@ h1{
 .nav-btn.prev{ left: -60px; }
 .nav-btn.next{ right: -60px; }
 
+.image-row{
+    display: flex;
+    gap: 20px;
+    margin: 10px 0;
+}
+.image-row img{
+    width: 200px;
+    border-radius: 6px;
+}
+
 @media(max-width: 600px){
     .nav-btn.prev{ left: 10px; }
     .nav-btn.next{ right: 10px; }

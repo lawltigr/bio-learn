@@ -24,12 +24,19 @@ if (!topic) {
 
 function showQuestion(){
     const q = topic.questions[current];
-    optionsEl.innerHTML = `
-        <p>${q.q}</p>
-        ${q.image ? `<img src="${q.image}" class="question-image">` : ""}
-    `;
-    optionsEl.innerHTML = "";
-
+    let html = `<p>${q.q}</p>`;
+    if (q.image) {
+        html += `<img src="${q.image}" class="question.image">`;
+    }
+    if (q.images) {
+        html += `<div class="image-row'>`;
+        q.images.forEach((img,i)=>{
+            html += `<img src=${img} class="question-image>`; 
+        });
+        html += `</div>`;
+    }
+    questionEl.innerHTML = html;
+    optionsEl.innerHTML="";
     q.options.forEach((opt,i) => {
         const btn = document.createElement("button");
         btn.textContent = opt;

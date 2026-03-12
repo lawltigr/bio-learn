@@ -54,7 +54,7 @@ const topicsData =[
             {
                 q: "Which of the pictures is mRna?",
                 images: ["image/mRna.png", "image/tRna.png"],
-                options: [1, 2],
+                options: ["Image 1", "Image 2"],
                 answer: 0
             }
         ] 
