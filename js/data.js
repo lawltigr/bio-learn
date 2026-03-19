@@ -39,7 +39,6 @@ const topicsData =[
                 options: ["Ribosome", "Mitochondria", "Golgi apparatus"],
                 answer: 1
             }
-            //SOLVNI PROBLEMU S MITOCHONDRIA KARTINKA
         ]
     },
     {
