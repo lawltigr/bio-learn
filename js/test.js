@@ -41,12 +41,26 @@ function showQuestion(){
     }
     questionEl.innerHTML = html;
     optionsEl.innerHTML="";
-    q.options.forEach((opt,i) => {
-        const btn = document.createElement("button");
-        btn.textContent = opt;
-        btn.onclick = () => selectAnswer(i);
-        optionsEl.appendChild(btn);
-    });
+    if (q.imageOptions) {
+        const container = document.createElement("div");
+        container.className = "image-options";
+        q.imageOptions.forEach((img,i) => {
+            const imgEl = document.createElement("img");
+            imgEl.src = img;
+            imgEl.className = "answer-image";
+            imgEl.onclick = () => selectAnswer(i);
+            container.appendChild(imgEl);
+        });
+        optionsEl.appendChild(container)
+    }
+    else{
+        q.options.forEach((opt,i) => {
+            const btn = document.createElement("button");
+            btn.textContent = opt;
+            btn.onclick = () => selectAnswer(i);
+            optionsEl.appendChild(btn);
+        });
+    }
 }
 
 function selectAnswer(index){
@@ -88,13 +102,24 @@ document.addEventListener("click", function(e){
     if (e.target.classList.contains("question-image")){
         openModalBySrc(e.target.getAttribute("src"));
     }
+});
+closeModal.addEventListener("click", function(e){
+    e.stopPropagation();
+    modal.classList.remove("active");
+});
+modal.addEventListener("click", function(e){
     if (e.target === modal){
         modal.classList.remove("active");
     }
 });
-closeModal.onclick = function(){
-    modal.classList.remove("active");
-};
+prevBtn.addEventListener("click", function(e){
+    e.stopPropagation(); 
+    showPrev(); 
+});
+nextBtnImg.addEventListener("click", function(e){
+    e.stopPropagation(); 
+    showNext(); 
+});
 
 function openModalBySrc(src) {
     currentImgIndex = Math.max(0, imageList.indexOf(src));
@@ -117,8 +142,7 @@ function showNext(){
     currentImgIndex = (currentImgIndex + 1) % imageList.length;
     modalimg.src = imageList[currentImgIndex];
 }
-prevBtn.onclick = (e) => { e.stopPropagation(); showPrev(); };
-nextBtnImg.onclick = (e) => { e.stopPropagation(); showNext(); };
+
 
 document.addEventListener("keydown", (e) => {
     if (!modal.classList.contains("active")) return;

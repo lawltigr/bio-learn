@@ -81,8 +81,19 @@ const topicsData =[
                 image: "image/Ecological_Pyramid.png",
                 options: ["A wolf", "A mushroom", "Grass"],
                 answer: 2
+            },
+            {
+                q: "Which image shows mitochondria?",
+                imageOptions: [
+                    "image/mitochondria.png",
+                    "image/dna.png",
+                    "image/trna.jpeg"
+                ],
+                answer: 0
             }
+
             
         ]
     }
+
 ]
