@@ -64,7 +64,8 @@ function showQuestion(){
 }
 
 function selectAnswer(index){
-    const correct = topic.questions[current].answer;
+    const q = topic.questions[current];
+    const correct = q.answer;
     if (index === correct) score++;
     const buttons = optionsEl.querySelectorAll("button");
     buttons.forEach(btn => btn.disabled = true);
@@ -81,12 +82,7 @@ function selectAnswer(index){
         </p>
     `;
     nextBtn.style.display = "block";
-    current++;
-    if (current< topic.questions.length) {
-        showQuestion();
-    } else{
-        finishTest();
-    }
+    
 }
 
 function finishTest(){
