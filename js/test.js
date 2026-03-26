@@ -66,6 +66,21 @@ function showQuestion(){
 function selectAnswer(index){
     const correct = topic.questions[current].answer;
     if (index === correct) score++;
+    const buttons = optionsEl.querySelectorAll("button");
+    buttons.forEach(btn => btn.disabled = true);
+    buttons.forEach((btn,i) =>{
+        if(i=== correct){
+            btn.classList.add("correct");
+        } else if(i === index){
+            btn.classList.add("wrong");
+        }
+    });
+    resultEl.innerHTML = `
+        <p class="explanation">
+            ${q.explanation ||""}
+        </p>
+    `;
+    nextBtn.style.display = "block";
     current++;
     if (current< topic.questions.length) {
         showQuestion();
@@ -120,6 +135,16 @@ nextBtnImg.addEventListener("click", function(e){
     e.stopPropagation(); 
     showNext(); 
 });
+nextBtn.onclick = () => {
+    current++;
+    if (current < topic.questions.length) {
+        resultEl.innerHTML = "";
+        nextBtn.style.display = "none";
+        showQuestion();
+    } else{
+        finishTest();
+    }
+};
 
 function openModalBySrc(src) {
     currentImgIndex = Math.max(0, imageList.indexOf(src));

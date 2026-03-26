@@ -7,7 +7,8 @@ const topicsData =[
             {
                 q: "Powerhouse of the cell is ___",
                 options: ["Ribosome", "Mitochondria", "Core"],
-                answer: 1
+                answer: 1,
+                explanation: "Mitochondria produce ATP and are known as the powerhouse of th cell."
             },
             {
                 q: "Which one contains DNA?",

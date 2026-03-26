@@ -39,6 +39,21 @@ header{
     border-radius: 8px;
 }
 
+button.correct {
+    background: #4caf50;
+    color: white;
+}
+button.wrong {
+    background-color: #f44336;
+    color: white;
+}
+.explanation {
+    margin-top: 15px;
+    padding: 10px;
+    background: #e3f2fd;
+    border-left: 4px solid #2196f3;
+}
+
 #options button{
     display: block;
     width: 100%;
