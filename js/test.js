@@ -13,6 +13,7 @@ const prevBtn = document.getElementById("prevImg");
 const nextBtnImg = document.getElementById("nextImg");
 const imageList = topic.questions.flatMap(q=>{
     if (q.images) return q.images;
+    if (q.imageOptions) return q.imageOptions;
     if (q.image) return [q.image];
     return[];
 });
@@ -65,25 +66,56 @@ function showQuestion(){
 
 function selectAnswer(index){
     const q = topic.questions[current];
+    if (!q.selected) q.selected = [];
+    if (q.selected.includes(index)) {
+        q.selected = q.selected.filter(i => i !== index);
+    } else {
+        q.selected.push(index);
+    }
     const correct = q.answer;
     if (index === correct) score++;
-    const buttons = optionsEl.querySelectorAll("button");
-    buttons.forEach(btn => btn.disabled = true);
-    buttons.forEach((btn,i) =>{
-        if(i=== correct){
-            btn.classList.add("correct");
-        } else if(i === index){
-            btn.classList.add("wrong");
-        }
-    });
+    
     resultEl.innerHTML = `
         <p class="explanation">
-            ${q.explanation ||""}
+            ${q.explanation ||"Think again and review the topic"}
         </p>
     `;
     nextBtn.style.display = "block";
     
 }
+
+nextBtn.onclick = () => {
+    const q=topic.questions[current];
+    let current = false;
+    if (q.answers) {
+        const selected = q.selected || [];
+        correct = 
+            selected.length === q.answers.length &&
+            selected.every(i=> q.answers.includes(i));
+    }
+    else {
+        correct = (q.selected && q.selected[0] === q.answer);
+    }
+    if (correct) score++;
+
+    const buttons = optionsEl.querySelectorAll("button");
+    // buttons.forEach(btn => btn.disabled = true);
+    buttons.forEach((btn,i) =>{
+        if(q.answers && q.answers.includes(i) || i === q.answer){
+            btn.classList.add("correct");
+        } else if(q.selected && q.selected.includes(i)){
+            btn.classList.add("wrong");
+        }
+        // start here
+    });
+    if (current < topic.questions.length) {
+        resultEl.innerHTML = "";
+        nextBtn.style.display = "none";
+        showQuestion();
+    } else{
+        finishTest();
+    }
+};
 
 function finishTest(){
     questionEl.textContent = "";
@@ -131,16 +163,7 @@ nextBtnImg.addEventListener("click", function(e){
     e.stopPropagation(); 
     showNext(); 
 });
-nextBtn.onclick = () => {
-    current++;
-    if (current < topic.questions.length) {
-        resultEl.innerHTML = "";
-        nextBtn.style.display = "none";
-        showQuestion();
-    } else{
-        finishTest();
-    }
-};
+
 
 function openModalBySrc(src) {
     currentImgIndex = Math.max(0, imageList.indexOf(src));
