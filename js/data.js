@@ -13,12 +13,14 @@ const topicsData =[
             {
                 q: "Which one contains DNA?",
                 options: ["Core", "Cytoplasm", "Membrane"],
-                answer: 0
+                answer: 0,
+                explanation: "Core contains all cell's DNA."
             },
             {
                 q: "Which structures contain genetic material?",
                 options:["Nucleus", "Mitochindria", "Ribosome"],
-                answers: [0, 2]
+                answers: [0, 2],
+                explanation: "Both Nucleus and Ribosomes contain cell's genetic material in different forms."
 
             }
         ]

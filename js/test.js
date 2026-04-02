@@ -19,6 +19,7 @@ const imageList = topic.questions.flatMap(q=>{
 });
 let currentImgIndex = 0;
 
+let current = 0;
 let score = 0;
 titleEl.textContent = topic.title;
 if (!topic) {
@@ -87,7 +88,7 @@ function selectAnswer(index){
 
 nextBtn.onclick = () => {
     const q=topic.questions[current];
-    let current = false;
+    let correct = false;
     if (q.answers) {
         const selected = q.selected || [];
         correct = 
