@@ -19,7 +19,6 @@ const imageList = topic.questions.flatMap(q=>{
 });
 let currentImgIndex = 0;
 
-let current = 0;
 let score = 0;
 titleEl.textContent = topic.title;
 if (!topic) {
@@ -73,15 +72,17 @@ function selectAnswer(index){
         q.selected.push(index);
     }
     const correct = q.answer;
-    if (index === correct) score++;
     
-    resultEl.innerHTML = `
-        <p class="explanation">
-            ${q.explanation ||"Think again and review the topic"}
-        </p>
-    `;
-    nextBtn.style.display = "block";
-    
+    // resultEl.innerHTML = `
+    //     <p class="explanation">
+    //         ${q.explanation ||"Think again and review the topic"}
+    //     </p>
+    // `;
+    // nextBtn.style.display = "block";
+    const buttons = optionsEl.querySelectorAll("button");
+    buttons.forEach((btn,i) => {
+        btn.classList.toggle("selected", q.selected.includes(i));
+    });
 }
 
 nextBtn.onclick = () => {
@@ -106,31 +107,25 @@ nextBtn.onclick = () => {
         } else if(q.selected && q.selected.includes(i)){
             btn.classList.add("wrong");
         }
-        resultEl.innerHTML = `
-            <p class="explanation">
-                ${q.explanation || "Review this concept"}
-            </p>
-        `;
-
-        buttons.forEach(btn => btn.disabled = true);
-        nextBtn.textContent = "Next";
-        nextBtn.onclick = () => {
-            current++;
-            if (current < topic.questions.length) {
-                resultEl.innerHTML = "";
-                nextBtn.textContent = "Submit";
-                showQuestion();
-            } else{
-                finishTest();
-            }
-        }
+        btn.disabled = true;
     });
-    if (current < topic.questions.length) {
-        resultEl.innerHTML = "";
-        nextBtn.style.display = "none";
-        showQuestion();
-    } else{
-        finishTest();
+    resultEl.innerHTML = `
+        <p class="explanation">
+            ${q.explanation || "Review this concept"}
+        </p>
+    `;
+
+    
+    nextBtn.textContent = "Next";
+    nextBtn.onclick = () => {
+        current++;
+        if (current < topic.questions.length) {
+            resultEl.innerHTML = "";
+            nextBtn.textContent = "Submit";
+            showQuestion();
+        } else{
+            finishTest();
+        }
     }
 };
 
