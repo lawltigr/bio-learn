@@ -282,6 +282,18 @@ h1{
     border-radius: 6px;
 }
 
+button.selected{
+    background: #bbdefb;
+}
+button.correct{
+    background: #4caf50;
+    color: white;
+}
+button.wrong{
+    background: #f44336;
+    color: white;
+}
+
 @media(max-width: 600px){
     .nav-btn.prev{ left: 10px; }
     .nav-btn.next{ right: 10px; }

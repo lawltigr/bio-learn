@@ -106,7 +106,24 @@ nextBtn.onclick = () => {
         } else if(q.selected && q.selected.includes(i)){
             btn.classList.add("wrong");
         }
-        // start here
+        resultEl.innerHTML = `
+            <p class="explanation">
+                ${q.explanation || "Review this concept"}
+            </p>
+        `;
+
+        buttons.forEach(btn => btn.disabled = true);
+        nextBtn.textContent = "Next";
+        nextBtn.onclick = () => {
+            current++;
+            if (current < topic.questions.length) {
+                resultEl.innerHTML = "";
+                nextBtn.textContent = "Submit";
+                showQuestion();
+            } else{
+                finishTest();
+            }
+        }
     });
     if (current < topic.questions.length) {
         resultEl.innerHTML = "";
