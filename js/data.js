@@ -34,13 +34,15 @@ const topicsData =[
             {
                 q: "What shape DNA is?",
                 options: ["Linear", "Double helix", "Circle"],
-                answer: 1
+                answer: 1,
+                explanation: "DNA is the shape of doule helix, unlike RNA."
             },
             {
                 q: "Identify the organelle shown in the image:",
                 image: "image/mitochondria.png",
                 options: ["Ribosome", "Mitochondria", "Golgi apparatus"],
-                answer: 1
+                answer: 1,
+                explanation: "The organelle on the image is mitochondria."
             }
         ]
     },
@@ -52,19 +54,22 @@ const topicsData =[
             {
                 q: "What shape DNA is?",
                 options: ["Linear", "Double helix", "Circle"],
-                answer: 1
+                answer: 1,
+                explanation: "DNA is the shape of doule helix, unlike RNA."
             },
             {
                 q: "Which of the pictures is mRna?",
                 images: ["image/mRna.png", "image/tRna.jpeg"],
                 options: ["Image 1", "Image 2"],
-                answer: 0
+                answer: 0,
+                explanation: "mRNA looks like one half of the DNA."
             },
             {
                 q: "Which of the structures on the pictures are located in the core?",
                 images: ["image/mRna.png", "image/dna.png", "image/tRna.jpeg"],
                 options: ["Image 1", "Image 2", "Image 3"],
-                answer: 1
+                answer: 1,
+                explanation: "The core contains DNA of the cell."
             }
             
         ] 
@@ -77,13 +82,15 @@ const topicsData =[
             {
                 q: "Where does all energy come from?",
                 options: ["Plants", "Sun", "Wind"],
-                answer: 1
+                answer: 1,
+                explanation: "The Sun brings all energy to Earth."
             },
             {
                 q: "Which of the following considered to be in the base level on the pyramid on the picture?",
                 image: "image/Ecological_Pyramid.png",
                 options: ["A wolf", "A mushroom", "Grass"],
-                answer: 2
+                answer: 2,
+                explanation: "The base level of the energy pyramid are plants."
             },
             {
                 q: "Which image shows mitochondria?",
@@ -92,7 +99,8 @@ const topicsData =[
                     "image/dna.png",
                     "image/trna.jpeg"
                 ],
-                answer: 0
+                answer: 0,
+                explanation: "Mitochondria is shown on the picture 1."
             }
 
             

@@ -86,43 +86,49 @@ function selectAnswer(index){
     });
 }
 
+let isAnswered = false;
+
 nextBtn.onclick = () => {
     const q=topic.questions[current];
-    let correct = false;
-    if (q.answers) {
-        const selected = q.selected || [];
-        correct = 
-            selected.length === q.answers.length &&
-            selected.every(i=> q.answers.includes(i));
-    }
-    else {
-        correct = (q.selected && q.selected[0] === q.answer);
-    }
-    if (correct) score++;
 
-    const buttons = optionsEl.querySelectorAll("button");
-    // buttons.forEach(btn => btn.disabled = true);
-    buttons.forEach((btn,i) =>{
-        if(q.answers && q.answers.includes(i) || i === q.answer){
-            btn.classList.add("correct");
-        } else if(q.selected && q.selected.includes(i)){
-            btn.classList.add("wrong");
+    if (!isAnswered) {
+        let correct = false;
+        if (q.answers) {
+            const selected = q.selected || [];
+            correct = 
+                selected.length === q.answers.length &&
+                selected.every(i=> q.answers.includes(i));
         }
-        btn.disabled = true;
-    });
-    resultEl.innerHTML = `
-        <p class="explanation">
-            ${q.explanation || "Review this concept"}
-        </p>
-    `;
+        else {
+            correct = (q.selected && q.selected[0] === q.answer);
+        }
+        if (correct) score++;
 
-    
-    nextBtn.textContent = "Next";
-    nextBtn.onclick = () => {
+        const buttons = optionsEl.querySelectorAll("button");
+        // buttons.forEach(btn => btn.disabled = true);
+        buttons.forEach((btn,i) =>{
+            if(q.answers && q.answers.includes(i) || i === q.answer){
+                btn.classList.add("correct");
+            } else if(q.selected && q.selected.includes(i)){
+                btn.classList.add("wrong");
+            }
+            btn.disabled = true;
+        });
+        resultEl.innerHTML = `
+            <p class="explanation">
+                ${q.explanation || "Review this concept"}
+            </p>
+        `;
+        isAnswered = true;
+        
+        nextBtn.textContent = "Next";
+    }   
+    else{
         current++;
         if (current < topic.questions.length) {
             resultEl.innerHTML = "";
             nextBtn.textContent = "Submit";
+            isAnswered = false;
             showQuestion();
         } else{
             finishTest();

@@ -37,6 +37,7 @@ header{
     overflow: visible;
     background: white;
     border-radius: 8px;
+    padding: 10px;
 }
 
 button.correct {
@@ -292,6 +293,22 @@ button.correct{
 button.wrong{
     background: #f44336;
     color: white;
+}
+#nextBtn{
+    margin-top: 10px;
+    display: flex;
+    justify-self: right;
+    font-size: 16px;
+}
+.timer {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: right;
+    margin-bottom: 10px;
+    color: #2e7d32;
+}
+.timre.warning {
+    color: #f44336;
 }
 
 @media(max-width: 600px){
