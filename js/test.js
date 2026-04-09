@@ -17,6 +17,9 @@ const imageList = topic.questions.flatMap(q=>{
     if (q.image) return [q.image];
     return[];
 });
+const timerEl = document.getElementById("timer");
+let timeLeft = 30;
+let timerInterval = null;
 let currentImgIndex = 0;
 
 let current = 0;
@@ -25,6 +28,30 @@ titleEl.textContent = topic.title;
 if (!topic) {
     questionEl.innerHTML = "Topic not found";
     throw new Error("Topic not found");
+}
+
+function startTimer(){
+    clearInterval(timerInterval);
+    timeLeft = 30;
+    timerEl.textContent = `⏱ ${timeLeft}`;
+    timerEl.classList.remove("warning");
+    timerInterval = setInterval(() => {
+        timeLeft--;
+        timerEl.textContent = `⏱ ${timeLeft}`;
+        if (timeLeft <= 10) {
+            timerEl.classList.add("warning");
+        }
+        if (timeLeft <= 0){
+            clearInterval(timerInterval);
+            autoSubmit();
+        }
+    }, 1000)
+}
+function autoSubmit(){
+    if (current >= topic.questions.length) return;
+    const q = topic.question[current];
+    if (!q.selected) q.selected = [];
+    nextBtn.click();
 }
 
 function showQuestion(){
@@ -62,6 +89,7 @@ function showQuestion(){
             optionsEl.appendChild(btn);
         });
     }
+    startTimer();
 }
 
 function selectAnswer(index){
@@ -89,7 +117,9 @@ function selectAnswer(index){
 let isAnswered = false;
 
 nextBtn.onclick = () => {
+    if (current >= topic.questions.length) return;
     const q=topic.questions[current];
+    clearInterval(timerInterval);
 
     if (!isAnswered) {
         let correct = false;
