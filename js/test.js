@@ -49,11 +49,20 @@ function startTimer(){
 }
 function autoSubmit(){
     if (current >= topic.questions.length) return;
-    const q = topic.question[current];
+    const q = topic.questions[current];
     if (!q.selected) q.selected = [];
     nextBtn.click();
 }
-
+function updateSelectionUI(q){
+    const buttons = optionsEl.querySelectorAll("button");
+    buttons.forEach((btn, i) => {
+        btn.classList.toggle("selected", q.selected?.includes(i));
+    });
+    const images = optionsEl.querySelectorAll(".answer-image");
+    images.forEach((img, i) => {
+        img.classList.toggle("selected-img", q.selected?.includes(i));
+    });
+}
 function showQuestion(){
     const q = topic.questions[current];
     let html = `<p>${q.q}</p>`;
@@ -90,6 +99,7 @@ function showQuestion(){
         });
     }
     startTimer();
+    updateSelectionUI(q);
 }
 
 function selectAnswer(index){
