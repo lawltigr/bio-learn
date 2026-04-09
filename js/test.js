@@ -67,12 +67,12 @@ function showQuestion(){
     const q = topic.questions[current];
     let html = `<p>${q.q}</p>`;
     if (q.image) {
-        html += `<img src="${q.image}" class="question.image">`;
+        html += `<img src="${q.image}" class="question-image">`;
     }
     if (q.images) {
         html += `<div class="image-row">`;
         q.images.forEach((img,i)=>{
-            html += `<img src=${img} class="question-image">`; 
+            html += `<img src="${img}" class="question-image">`; 
         });
         html += `</div>`;
     }
@@ -110,7 +110,7 @@ function selectAnswer(index){
     } else {
         q.selected.push(index);
     }
-    const correct = q.answer;
+    // const correct = q.answer;
     
     // resultEl.innerHTML = `
     //     <p class="explanation">
@@ -118,10 +118,11 @@ function selectAnswer(index){
     //     </p>
     // `;
     // nextBtn.style.display = "block";
-    const buttons = optionsEl.querySelectorAll("button");
-    buttons.forEach((btn,i) => {
-        btn.classList.toggle("selected", q.selected.includes(i));
-    });
+    // const buttons = optionsEl.querySelectorAll("button");
+    // buttons.forEach((btn,i) => {
+    //     btn.classList.toggle("selected", q.selected.includes(i));
+    // });
+    updateSelectionUI(q);
 }
 
 let isAnswered = false;
