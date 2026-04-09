@@ -285,7 +285,8 @@ h1{
 }
 
 button.selected{
-    background: #bbdefb;
+    background-color: #2196f3;
+    color: #ff9800;
     border: 2px solid #2196f3;
 }
 .answer-image.selected-img {
