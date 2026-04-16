@@ -1,7 +1,7 @@
 const params = new URLSearchParams(window.location.search);
 let topicsData = [];
 const topicId = params.get("topic");
-const topic = null;
+let topic = null;
 const titleEl = document.getElementById("topicTitle");
 const questionEl = document.getElementById("question");
 const optionsEl = document.getElementById("options");
@@ -12,13 +12,8 @@ const modalimg = document.getElementById("modalImg");
 const closeModal = document.getElementById("closeModal");
 const prevBtn = document.getElementById("prevImg");
 const nextBtnImg = document.getElementById("nextImg");
-const imageList = topic.questions.flatMap(q=>{
-    if (q.images) return q.images;
-    if (q.imageOptions) return q.imageOptions;
-    if (q.image) return [q.image];
-    return[];
-});
 const timerEl = document.getElementById("timer");
+let imageList = [];
 let timeLeft = 30;
 let timerInterval = null;
 let currentImgIndex = 0;
@@ -41,16 +36,23 @@ async function loadData(){
 function initApp(){
     const params = new URLSearchParams(window.location.search);
     const topicId = params.get("topic");
-    const topic = topicsData.find(t => t.id === topicId);
+    topic = topicsData.find(t => t.id === topicId);
+    imageList = topic.questions.flatMap(q=>{
+        if (q.images) return q.images;
+        if (q.imageOptions) return q.imageOptions;
+        if (q.image) return [q.image];
+        return[];
+    });
 
     if (!topic){
         document.body.innerHTML = "Topic not found";
         return;
     }
     startTest(topic);
+
 }
 
-function startTest(topic){
+function startTest(){
     titleEl.textContent = topic.title;
 
     current = 0;
