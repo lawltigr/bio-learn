@@ -30,6 +30,26 @@ if (!topic) {
     throw new Error("Topic not found");
 }
 
+function initApp(){
+    const params = new URLSearchParams(window.location.search);
+    const topicId = params.get("topic");
+    const topic = TopicsData.find(t => t.id === topicId);
+
+    if (!topic){
+        document.body.innerHTML = "Topic not found";
+        return;
+    }
+    startTest(topic);
+}
+
+function startTest(topic){
+    titleEl.textContent = topic.title;
+
+    current = 0;
+    score = 0;
+    showQuestion();
+}
+
 function startTimer(){
     clearInterval(timerInterval);
     timeLeft = 30;
