@@ -1,6 +1,7 @@
 const params = new URLSearchParams(window.location.search);
+let topicsData = [];
 const topicId = params.get("topic");
-const topic = topicsData.find(t=> t.id === topicId);
+const topic = null;
 const titleEl = document.getElementById("topicTitle");
 const questionEl = document.getElementById("question");
 const optionsEl = document.getElementById("options");
@@ -30,10 +31,17 @@ if (!topic) {
     throw new Error("Topic not found");
 }
 
+async function loadData(){
+    const res = await fetch("data/questions.json");
+    topicsData = await res.json();
+
+    initApp();
+}
+
 function initApp(){
     const params = new URLSearchParams(window.location.search);
     const topicId = params.get("topic");
-    const topic = TopicsData.find(t => t.id === topicId);
+    const topic = topicsData.find(t => t.id === topicId);
 
     if (!topic){
         document.body.innerHTML = "Topic not found";
@@ -219,7 +227,7 @@ function saveResult(percent){
     });
     localStorage.setItem("tests", JSON.stringify(data));
 }
-showQuestion();
+loadData();
 
 document.addEventListener("click", function(e){
     if (e.target.classList.contains("question-image")){
