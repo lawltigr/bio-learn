@@ -110,9 +110,25 @@
 // ]
 
 let topicsData= [];
+
+function renderTopics(){
+    const container = document.getElementById("topics");
+    container.innerHTML = "";;
+    topicsData.forEach(topic => {
+        const div = document.createElement("div");
+        div.className = "topic-card";
+        div.innerHTML = `
+            <h3>${topic.title}</h3>
+            <p>${topic.description || ""}</p>
+            <a href="test.html?topic=${topic.id}">Start Test</a>
+        `;
+        container.appendChild(div);
+    });
+}
+
 async function loadData(){
-    const res = await fetch("data/questions.json");
+    const res = await fetch("css/data/questions.json");
     topicsData = await res.json();
 
-    initApp();
+    renderTopics();
 }

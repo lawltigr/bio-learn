@@ -32,6 +32,10 @@ function initApp(){
     const params = new URLSearchParams(window.location.search);
     const topicId = params.get("topic");
     topic = topicsData.find(t => t.id === topicId);
+    if (!topic){
+        document.body.innerHTML = "Topic not found";
+        return;
+    }
     imageList = topic.questions.flatMap(q=>{
         if (q.images) return q.images;
         if (q.imageOptions) return q.imageOptions;
@@ -39,10 +43,7 @@ function initApp(){
         return[];
     });
 
-    if (!topic){
-        document.body.innerHTML = "Topic not found";
-        return;
-    }
+    
     startTest(topic);
 
 }
