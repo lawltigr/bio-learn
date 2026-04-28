@@ -15,10 +15,14 @@
     </header>
     <main>
         <input type="text" id="search"  placeholder="Search for theme...">
-        <section id="topics" class="topics"></section>
+        <!-- <section id="topics" class="topics"></section> -->
+        <div id="topics" class="topics"></div>
     </main>
 
     <script src="js/data.js"></script>
     <script src="js/bio-learn.js"></script>
+    <script>
+        loadData(renderTopics);
+    </script>
 </body>
 </html>

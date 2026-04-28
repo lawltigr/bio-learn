@@ -113,6 +113,9 @@ let topicsData= [];
 
 function renderTopics(){
     const container = document.getElementById("topics");
+    if (!container){
+        return;
+    }
     container.innerHTML = "";;
     topicsData.forEach(topic => {
         const div = document.createElement("div");
@@ -126,9 +129,11 @@ function renderTopics(){
     });
 }
 
-async function loadData(){
+async function loadData(callback){
     const res = await fetch("css/data/questions.json");
     topicsData = await res.json();
-
-    renderTopics();
+    if(callback){
+        callback;
+    }
+    
 }
