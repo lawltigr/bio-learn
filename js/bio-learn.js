@@ -2,7 +2,7 @@
 const searchInput = document.getElementById("search");
 let topicsData = [];
 
-function renderTopics(){
+function renderTopics(data=topicsData){
     const container = document.getElementById("topics");
     if (!container){
         return;
@@ -16,7 +16,7 @@ function renderTopics(){
             <p>${t.description}</p>
             <a href="test.html?topic=${t.id}">take the test</a>
         `;
-        topicsContainer.appendChild(card);
+        container.appendChild(card);
     })
 }
 
@@ -25,4 +25,3 @@ searchInput.addEventListener("input", () => {
     const filtered = topicsData.filter(t => t.title.toLowerCase().includes(value));
     renderTopics(filtered);
 });
-renderTopics(topicsData);

@@ -44,7 +44,7 @@ function initApp(){
     });
 
     
-    startTest(topic);
+    startTest();
 
 }
 
