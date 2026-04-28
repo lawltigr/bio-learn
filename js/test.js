@@ -225,7 +225,7 @@ function saveResult(percent){
     });
     localStorage.setItem("tests", JSON.stringify(data));
 }
-loadData();
+loadData(initApp);
 
 document.addEventListener("click", function(e){
     if (e.target.classList.contains("question-image")){

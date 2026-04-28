@@ -1,8 +1,14 @@
-const topicsContainer = document.getElementById("topics");
+
 const searchInput = document.getElementById("search");
-function renderTopics(list){
-    topicsContainer.innerHTML = "";
-    list.forEach(t => {
+let topicsData = [];
+
+function renderTopics(){
+    const container = document.getElementById("topics");
+    if (!container){
+        return;
+    }
+    container.innerHTML = "";
+    topicsData.forEach(t => {
         const card = document.createElement("div");
         card.className = "topic-card";
         card.innerHTML = `

@@ -130,10 +130,10 @@ function renderTopics(){
 }
 
 async function loadData(callback){
-    const res = await fetch("css/data/questions.json");
+    const res = await fetch("data/questions.json");
     topicsData = await res.json();
     if(callback){
-        callback;
+        callback();
     }
     
 }
