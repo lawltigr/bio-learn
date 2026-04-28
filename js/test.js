@@ -20,11 +20,6 @@ let currentImgIndex = 0;
 
 let current = 0;
 let score = 0;
-titleEl.textContent = topic.title;
-if (!topic) {
-    questionEl.innerHTML = "Topic not found";
-    throw new Error("Topic not found");
-}
 
 async function loadData(){
     const res = await fetch("data/questions.json");
