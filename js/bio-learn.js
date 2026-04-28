@@ -8,7 +8,7 @@ function renderTopics(data=topicsData){
         return;
     }
     container.innerHTML = "";
-    topicsData.forEach(t => {
+    data.forEach(t => {
         const card = document.createElement("div");
         card.className = "topic-card";
         card.innerHTML = `
