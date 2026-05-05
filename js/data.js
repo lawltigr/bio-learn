@@ -143,7 +143,7 @@ async function loadData(callback){
 }
 
 function saveData(){
-    localStorage("topicsData", JSON.stringify(topicsData));
+    localStorage.setItem("topicsData", JSON.stringify(topicsData));
 }
 
 function loadTopicsToSelect(){
@@ -163,7 +163,7 @@ function addQuestion(){
         document.getElementById("opt3").value,
     ];
     const answer = parseInt(document.getElementById("correct").value);
-    const topicIndex = document.getElementById("topicSelect").value;
+    const topicIndex = parseInt(document.getElementById("topicSelect").value);
     topicsData[topicIndex].questions.push({
         q, 
         options,

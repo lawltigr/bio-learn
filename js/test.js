@@ -20,12 +20,6 @@ let currentImgIndex = 0;
 let current = 0;
 let score = 0;
 
-async function loadData(){
-    const res = await fetch("data/questions.json");
-    topicsData = await res.json();
-
-    initApp();
-}
 
 function initApp(){
     const params = new URLSearchParams(window.location.search);
