@@ -155,8 +155,13 @@ function loadTopicsToSelect(){
         select.appendChild(option);
     });
 }
-function addQuestion(){
+async function addQuestion(){
     const q = document.getElementById("qText").value;
+    const fileInput = document.getElementById("imageFile");
+    if (fileInput.files.length > 0){
+        image = await readImage(fileInput.files[0]);
+    }
+    let image = null;
     const options = [
         document.getElementById("opt1").value,
         document.getElementById("opt2").value,
@@ -167,8 +172,17 @@ function addQuestion(){
     topicsData[topicIndex].questions.push({
         q, 
         options,
-        answer
+        answer,
+        image
     });
     saveData();
     alert("Question added!");
+}
+
+function readImage(file){
+    return new Promise((resolve) =>{
+        const reader = new FileReader();
+        reader.onload =() => resolve(reader.result);
+        reader.readAsDataURL(file);
+    });
 }
