@@ -1,5 +1,4 @@
 const params = new URLSearchParams(window.location.search);
-let topicsData = [];
 const topicId = params.get("topic");
 let topic = null;
 const titleEl = document.getElementById("topicTitle");

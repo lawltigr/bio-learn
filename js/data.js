@@ -130,10 +130,45 @@ function renderTopics(){
 }
 
 async function loadData(callback){
-    const res = await fetch("data/questions.json");
-    topicsData = await res.json();
+    const saved = localStorage.getItem("topicsData");
+    if (saved){
+        topicsData = JSON.parse(saved);
+    } else {
+        const res = await fetch("data/questions.json");
+        topicsData = await res.json();
+    }
     if(callback){
         callback();
     }
-    
+}
+
+function saveData(){
+    localStorage("topicsData", JSON.stringify(topicsData));
+}
+
+function loadTopicsToSelect(){
+    const select = document.getElementById("topicSelect");
+    topicsData.forEach((t, i) => {
+        const option = document.createElement("option");
+        option.value = i;
+        option.textContent = t.title;
+        select.appendChild(option);
+    });
+}
+function addQuestion(){
+    const q = document.getElementById("qText").value;
+    const options = [
+        document.getElementById("opt1").value,
+        document.getElementById("opt2").value,
+        document.getElementById("opt3").value,
+    ];
+    const answer = parseInt(document.getElementById("correct").value);
+    const topicIndex = document.getElementById("topicSelect").value;
+    topicsData[topicIndex].questions.push({
+        q, 
+        options,
+        answer
+    });
+    saveData();
+    alert("Question added!");
 }
