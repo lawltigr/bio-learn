@@ -3,22 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bio-learn.css">
     <title>Document</title>
 </head>
 <body>
-    <h2>Add Question</h2>
-    <input id="qText" placeholder="Question">
-    <input id="imageFile" type="file" placeholder="Image path (optional)">
-    <div class="preview-wrapper">
-        <img id="imagePreview" class="image-preview">
+    <div class="admin-container">
+        <div class="top-bar">
+            <a href="bio-learn.html">Main page</a>
+            <a href="analytics.html">Analytics</a>
+        </div>
+        <h2 class="admin-title">Add Question</h2>
+        <div class="admin-form">
+            <input id="qText" placeholder="Question">
+            <input id="imageFile" type="file" placeholder="Image path (optional)">
+            <div class="preview-wrapper">
+                <img id="imagePreview" class="image-preview">
+            </div>
+            <input id="opt1" placeholder="Option 1">
+            <input id="opt2" placeholder="Option 2">
+            <input id="opt3" placeholder="Option 3">
+            <input id="correct" placeholder="Correct index (0, 1, 2)">
+            <select id="topicSelect"></select>
+            <button onclick="addQuestion()">Add</button>
+        </div>
+        <div class="question-list" id="questionList"></div>
     </div>
-    <input id="opt1" placeholder="Option 1">
-    <input id="opt2" placeholder="Option 2">
-    <input id="opt3" placeholder="Option 3">
-    <input id="correct" placeholder="Correct index (0, 1, 2)">
-    <select id="topicSelect"></select>
-    <button onclick="addQuestion()">Add</button>
-
 
     <script src="js/data.js"></script>
     <script>loadData(loadTopicsToSelect);</script>
