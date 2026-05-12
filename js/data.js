@@ -158,10 +158,10 @@ function loadTopicsToSelect(){
 async function addQuestion(){
     const q = document.getElementById("qText").value;
     const fileInput = document.getElementById("imageFile");
+    let image = null;
     if (fileInput.files.length > 0){
         image = await readImage(fileInput.files[0]);
     }
-    let image = null;
     const options = [
         document.getElementById("opt1").value,
         document.getElementById("opt2").value,
@@ -185,4 +185,22 @@ function readImage(file){
         reader.onload =() => resolve(reader.result);
         reader.readAsDataURL(file);
     });
+}
+
+const imagePreview = document.getElementById("imagePreview");
+const imageInput = document.getElementById("imageFile");
+if (imageInput){
+    imageInput.addEventListener("change", function(){
+        const file = this.files[0];
+        if (!file){
+            imagePreview.style.display = "none";
+            return;
+        }
+        const reader = new FileReader();
+        reader.onload = function(e){
+            imagePreview.src = e.target.result;
+            imagePreview.style.display = "block";
+        };
+        reader.readAsDataURL(file);
+    })
 }

@@ -318,6 +318,13 @@ button.wrong{
     color: #f44336;
 }
 
+.image-preview{
+    display: none;
+    max-width: 300px;
+    margin-top: 10px;
+    border-radius: 8px;
+}
+
 @media(max-width: 600px){
     .nav-btn.prev{ left: 10px; }
     .nav-btn.next{ right: 10px; }
