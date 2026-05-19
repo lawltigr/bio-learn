@@ -163,6 +163,7 @@ async function addQuestion(){
     const img1= document.getElementById("imgOpt1").files[0];
     const img2= document.getElementById("imgOpt2").files[0];
     const img3= document.getElementById("imgOpt3").files[0];
+    const explanation = document.getElementById("explanation").value;
     if (img1){
         imageOptions.push(await readImage(img1));
     }
@@ -188,7 +189,8 @@ async function addQuestion(){
         options,
         answer,
         image,
-        imageOptions
+        imageOptions,
+        explanation
     });
     saveData();
     alert("Question added!");
