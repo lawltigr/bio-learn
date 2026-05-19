@@ -159,6 +159,20 @@ async function addQuestion(){
     const q = document.getElementById("qText").value;
     const fileInput = document.getElementById("imageFile");
     let image = null;
+    let imageOptions = [];
+    const img1= document.getElementById("imgOpt1").files[0];
+    const img2= document.getElementById("imgOpt2").files[0];
+    const img3= document.getElementById("imgOpt3").files[0];
+    if (img1){
+        imageOptions.push(await readImage(img1));
+    }
+    if (img2){
+        imageOptions.push(await readImage(img2));
+    }
+    if (img3){
+        imageOptions.push(await readImage(img3));
+    }
+
     if (fileInput.files.length > 0){
         image = await readImage(fileInput.files[0]);
     }
@@ -173,7 +187,8 @@ async function addQuestion(){
         q, 
         options,
         answer,
-        image
+        image,
+        imageOptions
     });
     saveData();
     alert("Question added!");

@@ -95,6 +95,13 @@ function showQuestion(){
         });
         html += `</div>`;
     }
+    if (q.imageOptions) {
+        html += `<div class="image-options">`;
+        q.imageOptions.forEach((img,i)=>{
+            html += `<img src="${img}" class="answer-image" onclick="selectAnswer(${i})">`; 
+        });
+        html += `</div>`;
+    }
     questionEl.innerHTML = html;
     optionsEl.innerHTML="";
     if (q.imageOptions) {
