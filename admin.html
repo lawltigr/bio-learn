@@ -31,18 +31,15 @@
             <textarea id="explanation" placeholder="Explanation"></textarea>
             <button onclick="addQuestion()" id="saveBtn">Add</button>
         </div>
-        <p>
-            Type:
-            ${
-                q.imageOptions
-                ? "image answers"
-                : "Text answers"
-            }
-        </p>
+        
         <div class="question-list" id="questionList"></div>
     </div>
 
     <script src="js/data.js"></script>
-    <script>loadData(loadTopicsToSelect);</script>
+    <script>loadData(() => {
+        loadTopicsToSelect();
+        renderQuestionList();
+        });
+    </script>
 </body>
 </html>

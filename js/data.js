@@ -100,6 +100,7 @@ async function addQuestion(){
         .push(questionData);
     }
     saveData();
+    renderQuestionList();
     alert("Question added!");
     document.getElementById("qText").value = "";
     document.getElementById("opt1").value = "";
@@ -169,4 +170,36 @@ async function editQuestion(topicIndex, questionIndex){
         top: 0,
         behavior: "smooth"
     });
+}
+function renderQuestionList(){
+    const container = document.getElementById("questionList");
+    if (!container) return; 
+    container.innerHTML = "";
+    topicsData.forEach((topic, topicIndex) =>{
+        topic.questions.forEach((q, questionIndex) => {
+            const div = document.createElement("div");
+            div.className = "question-card";
+            div.innerHTML = `
+            <h4>${q.q}</h4>
+            <p>
+                Topic:
+                ${topic.title}
+            </p>
+            <p>
+                Type:
+                ${
+                    q.imageOptions && q.imageOptions.length > 0
+                    ? "image answers"
+                    : "Text answers"
+                }
+            </p>
+            <div class="question-actions">
+                <button class="edit-btn" onclick="editQuestion(${topicIndex}, ${questionIndex})">Edit</button>
+                <button class="edit-btn" onclick="deleteQuestion(${topicIndex}, ${questionIndex})">Delete</button>
+            </div>
+            `
+            container.appendChild(div);
+        })
+    })
+
 }
