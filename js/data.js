@@ -171,6 +171,15 @@ async function editQuestion(topicIndex, questionIndex){
         behavior: "smooth"
     });
 }
+function deleteQuestion(topicIndex, questionIndex){
+    const confirmDelete= confirm("Delete this question?");
+    if (!confirmDelete) return;
+    topicsData[topicIndex]
+    .questions
+    .splice(questionIndex,1);
+    saveData();
+    renderQuestionList();
+}
 function renderQuestionList(){
     const container = document.getElementById("questionList");
     if (!container) return; 
