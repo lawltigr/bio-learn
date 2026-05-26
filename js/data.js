@@ -75,16 +75,45 @@ async function addQuestion(){
     ];
     const answer = parseInt(document.getElementById("correct").value);
     const topicIndex = parseInt(document.getElementById("topicSelect").value);
-    topicsData[topicIndex].questions.push({
+    
+    const questionData = {
         q, 
         options,
         answer,
         image,
         imageOptions,
         explanation
-    });
+    };
+    if (editingQuestion){
+        topicsData[
+            editingQuestion.topicIndex
+        ].questions[
+            editingQuestion.questionIndex
+        ] = questionData;
+        editingQuestion = null;
+        document.getElementById("saveBtn")
+        .textContent = "Add question";
+    }
+    else{
+        topicsData[topicIndex]
+        .questions
+        .push(questionData);
+    }
     saveData();
     alert("Question added!");
+    document.getElementById("qText").value = "";
+    document.getElementById("opt1").value = "";
+    document.getElementById("opt2").value = "";
+    document.getElementById("opt3").value = "";
+    document.getElementById("correct").value = "";
+    document.getElementById("explanation").value = "";
+    document.getElementById("imageFile").value = "";
+    document.getElementById("imgOpt1").value = "";
+    document.getElementById("imgOpt2").value = "";
+    document.getElementById("imgOpt3").value = "";
+    const preview = document.getElementById("imagePreview");
+    preview.src = "";
+    preview.style.display = "none";
 }
 
 function readImage(file){
@@ -130,4 +159,14 @@ async function editQuestion(topicIndex, questionIndex){
         preview.style.display = "none";
         // start heree
     }
+    editingQuestion = {
+        topicIndex,
+        questionIndex
+    };
+    document.getElementById("saveBtn")
+    .textContent = "Save changes";
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
 }
