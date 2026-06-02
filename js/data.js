@@ -13,7 +13,6 @@ function renderTopics(){
         div.innerHTML = `
             <h3>${topic.title}</h3>
             <p>${topic.description || ""}</p>
-            <p> Difficulty: ${topic.difficulty || "easy"}</p>
             <a href="test.html?topic=${topic.id}">Start Test</a>
         `;
         container.appendChild(div);
@@ -156,6 +155,7 @@ async function editQuestion(topicIndex, questionIndex){
     document.getElementById("correct").value = q.answer?? "";
     document.getElementById("explanation").value = q.explanation || "";
     document.getElementById("topicSelect").value = topicIndex;
+    document.getElementById("difficulty").value = q.difficulty || "easy";
     const preview = document.getElementById("imagePreview");
     if (q.image){
         preview.src = q.image;
@@ -206,6 +206,8 @@ function renderQuestionList(){
                     : "Text answers"
                 }
             </p>
+
+            <p> Difficulty: <span class="${q.difficulty || "easy"}">${q.difficulty || "easy"}</span></p>
             <div class="question-actions">
                 <button class="edit-btn" onclick="editQuestion(${topicIndex}, ${questionIndex})">Edit</button>
                 <button class="edit-btn" onclick="deleteQuestion(${topicIndex}, ${questionIndex})">Delete</button>
