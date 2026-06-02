@@ -16,6 +16,7 @@ let imageList = [];
 let timeLeft = 30;
 let timerInterval = null;
 let currentImgIndex = 0;
+const progressBar = document.getElementById("progressBar");
 
 let current = 0;
 let score = 0;
@@ -126,6 +127,7 @@ function showQuestion(){
     }
     startTimer();
     updateSelectionUI(q);
+    updateProgress();
 }
 
 function selectAnswer(index){
@@ -280,3 +282,9 @@ document.addEventListener("keydown", (e) => {
     if (e.key === "ArrowLeft") showPrev();
     if (e.key === "ArrowRight") showNext();
 })
+
+function updateProgress(){
+    const percent = ((current + 1) / topic.questions.length) * 100;
+    progressBar.style.width = 
+    percent + "%";
+}
