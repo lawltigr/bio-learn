@@ -468,16 +468,23 @@ body{
 .progress{
     width: 100%;
     height: 12px;
-    background: #ddd;
-    border-radius: 10px;
+    background: #dcedc8;
+    border-radius: 20px;
     overflow: hidden;
     margin-bottom: 20px;
 }
 .progress-bar{
     height: 100%;
     width: 0%;
-    background: #4caf50;
-    transition: 0.3s;
+    background: #2e7d32;
+    border-radius: 20px;
+    transition: width 0.3s ease;
+}
+.progress-info{
+    text-align: center;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #2e7d32;
 }
 
 @media(max-width: 600px){

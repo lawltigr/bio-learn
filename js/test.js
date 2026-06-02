@@ -17,6 +17,7 @@ let timeLeft = 30;
 let timerInterval = null;
 let currentImgIndex = 0;
 const progressBar = document.getElementById("progressBar");
+const progressText = document.getElementById("progressText");
 
 let current = 0;
 let score = 0;
@@ -125,9 +126,9 @@ function showQuestion(){
             optionsEl.appendChild(btn);
         });
     }
+    updateProgress();
     startTimer();
     updateSelectionUI(q);
-    updateProgress();
 }
 
 function selectAnswer(index){
@@ -218,13 +219,22 @@ function finishTest(){
 
 function saveResult(percent){
     const data = JSON.parse(localStorage.getItem("tests")) || [];
-    data.push({
-        topic: topic.title,
-        score,
-        total: topic.questions.length,
-        percent,
-        date: new Date().toISOString().split("T")[0]
-    });
+    const existing = data.find(x=> x.topic === topic.title);
+    if (!existing){
+        data.push({
+            topic: topic.title,
+            score,
+            total: topic.questions.length,
+            percent,
+            date: new Date().toISOString().split("T")[0]
+        });
+    }
+    else if (percent> existing.percent) {
+        existing.score = score;
+        existing.total = topic.questions.length;
+        existing.percent = percent;
+        existing.date = new Date().toISOString().split("T")[0];
+    }
     localStorage.setItem("tests", JSON.stringify(data));
 }
 loadData(initApp);
@@ -284,7 +294,9 @@ document.addEventListener("keydown", (e) => {
 })
 
 function updateProgress(){
-    const percent = ((current + 1) / topic.questions.length) * 100;
-    progressBar.style.width = 
-    percent + "%";
+    const total = topic.questions.length;
+    const number = current +1;
+    const percent = (number/ total) * 100;
+    progressBar.style.width = percent + "%";
+    progressText.textContent = `Question ${number} / ${total}`;
 }
