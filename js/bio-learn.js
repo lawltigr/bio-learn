@@ -1,4 +1,3 @@
-
 const searchInput = document.getElementById("search");
 let topicsData = [];
 

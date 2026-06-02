@@ -453,6 +453,19 @@ body{
     background: #1b5e20;
 }
 
+.easy{
+    color: #4caf50;
+    font-weight: bold;
+}
+.medium{
+    color: #ff9800;
+    font-weight: bold;
+}
+.hard{
+    color: #f44336;
+    font-weight: bold;
+}
+
 @media(max-width: 600px){
     .nav-btn.prev{ left: 10px; }
     .nav-btn.next{ right: 10px; }

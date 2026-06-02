@@ -104,7 +104,7 @@ function showQuestion(){
     // }
     questionEl.innerHTML = html;
     optionsEl.innerHTML="";
-    if (q.imageOptions) {
+    if (q.imageOptions && q.imageOptions.length > 0) {
         const container = document.createElement("div");
         container.className = "image-options";
         q.imageOptions.forEach((img,i) => {

@@ -23,12 +23,17 @@
             <input type="file" id="imgOpt1">
             <input type="file" id="imgOpt2">
             <input type="file" id="imgOpt3">
-            <!-- <div id="oldImageAnswers" class=""old-images>hereee</div> -->
+            <div id="oldImageAnswers" class="old-images"></div>
             <input id="opt1" placeholder="Option 1">
             <input id="opt2" placeholder="Option 2">
             <input id="opt3" placeholder="Option 3">
             <input id="correct" placeholder="Correct index (0, 1, 2)">
             <select id="topicSelect"></select>
+            <select id="difficulty">
+                <option value="easy">Easy</option>
+                <option value="medium">Medium</option>
+                <option value="hard">Hard</option>
+            </select>
             <textarea id="explanation" placeholder="Explanation"></textarea>
             <button onclick="addQuestion()" id="saveBtn">Add</button>
         </div>

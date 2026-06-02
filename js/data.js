@@ -13,6 +13,7 @@ function renderTopics(){
         div.innerHTML = `
             <h3>${topic.title}</h3>
             <p>${topic.description || ""}</p>
+            <p> Difficulty: ${topic.difficulty || "easy"}</p>
             <a href="test.html?topic=${topic.id}">Start Test</a>
         `;
         container.appendChild(div);
@@ -48,6 +49,8 @@ function loadTopicsToSelect(){
 async function addQuestion(){
     const q = document.getElementById("qText").value;
     const fileInput = document.getElementById("imageFile");
+    const difficulty = document.getElementById("difficulty").value;
+
     let image = null;
     let imageOptions = [];
     const img1= document.getElementById("imgOpt1").files[0];
@@ -82,7 +85,8 @@ async function addQuestion(){
         answer,
         image,
         imageOptions,
-        explanation
+        explanation,
+        difficulty
     };
     if (editingQuestion){
         topicsData[
