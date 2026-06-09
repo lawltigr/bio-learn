@@ -217,25 +217,45 @@ function finishTest(){
     saveResult(percent);
 }
 
+// function saveResult(percent){
+//     const data = JSON.parse(localStorage.getItem("tests")) || [];
+//     const existing = data.find(x=> x.topic === topic.title);
+//     if (!existing){
+//         data.push({
+//             topic: topic.title,
+//             score,
+//             total: topic.questions.length,
+//             percent,
+//             date: new Date().toISOString().split("T")[0]
+//         });
+//     }
+//     else if (percent> existing.percent) {
+//         existing.score = score;
+//         existing.total = topic.questions.length;
+//         existing.percent = percent;
+//         existing.date = new Date().toISOString().split("T")[0];
+//     }
+//     localStorage.setItem("tests", JSON.stringify(data));
+// }
+
 function saveResult(percent){
-    const data = JSON.parse(localStorage.getItem("tests")) || [];
-    const existing = data.find(x=> x.topic === topic.title);
-    if (!existing){
-        data.push({
-            topic: topic.title,
-            score,
-            total: topic.questions.length,
-            percent,
-            date: new Date().toISOString().split("T")[0]
-        });
-    }
-    else if (percent> existing.percent) {
-        existing.score = score;
-        existing.total = topic.questions.length;
-        existing.percent = percent;
-        existing.date = new Date().toISOString().split("T")[0];
-    }
-    localStorage.setItem("tests", JSON.stringify(data));
+
+    const data =
+        JSON.parse(localStorage.getItem("tests"))
+        || [];
+
+    data.push({
+        topic: topic.title,
+        score,
+        total: topic.questions.length,
+        percent,
+        date: new Date().toISOString().split("T")[0]
+    });
+
+    localStorage.setItem(
+        "tests",
+        JSON.stringify(data)
+    );
 }
 loadData(initApp);
 
