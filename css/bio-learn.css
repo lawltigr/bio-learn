@@ -490,6 +490,13 @@ body{
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
+    overflow: hidden;
+    border-radius: 12px;
+}
+.leaderboard-title{
+    text-align: center;
+    color: #2e7d32;
+    margin-bottom: 25px;
 }
 .leaderboard-table th, .leaderboard-table td{
     border: 1px solid #ddd;
@@ -499,9 +506,43 @@ body{
 .leaderboard-table th{
     background: #2e7d32;
     color: white;
+    padding: 14px;
+    font-size: 16px;
+}
+.leaderboard-table td{
+    padding: 14px;
+    text-align: center;
+    border-bottom: 1px solid #e0e0e0;
 }
 .leaderboard-table tr:nth-child(even){
-    background: #f7f7f7;
+    background: #f4fdf6;
+}
+.leaderboard-table tr:hover{
+    background: #e8f5e9;
+}
+.leaderboard-table td:first-child{
+    font-weight: bold;
+    color: #2e7d32;
+}
+.leaderboard-home{
+    display: inline-block;
+    margin-bottom: 20px;
+    background: #2e7d32;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+}
+.leaderboard-home:hover{
+    background: #1b5e20;
+}
+.leaderboard-page{
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 25px;
+    background: white;
+    border-radius: 14px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.8);
 }
 
 @media(max-width: 600px){
