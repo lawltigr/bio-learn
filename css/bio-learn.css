@@ -486,6 +486,23 @@ body{
     font-weight: bold;
     color: #2e7d32;
 }
+.leaderboard-table{
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+.leaderboard-table th, .leaderboard-table td{
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: center;
+}
+.leaderboard-table th{
+    background: #2e7d32;
+    color: white;
+}
+.leaderboard-table tr:nth-child(even){
+    background: #f7f7f7;
+}
 
 @media(max-width: 600px){
     .nav-btn.prev{ left: 10px; }
