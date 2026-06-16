@@ -544,6 +544,15 @@ body{
     border-radius: 14px;
     box-shadow: 0 4px 14px rgba(0,0,0,0.8);
 }
+.achievement{
+    background: #fff8e1;;
+    border-left: 6px solid #ffc107;
+    padding: 16px;
+    margin: 12px 0;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
 
 @media(max-width: 600px){
     .nav-btn.prev{ left: 10px; }

@@ -215,6 +215,10 @@ function finishTest(){
     <h2>Result: ${percent}%</h2>
     <a href="analytics.html">Go to analytics</a>`
     saveResult(percent);
+    unlockAchievement("Beginner");
+    if (percent === 100){
+        unlockAchievement("Perfect Score");
+    }
 }
 
 // function saveResult(percent){
@@ -319,4 +323,13 @@ function updateProgress(){
     const percent = (number/ total) * 100;
     progressBar.style.width = percent + "%";
     progressText.textContent = `Question ${number} / ${total}`;
+}
+
+function unlockAchievement(name){
+    const achievements = JSON.parse(localStorage.getItem("achievements")) || [];
+    if (!achievements.includes(name)){
+        achievements.push(name);
+        localStorage.setItem("achievements", JSON.stringify(achievements));
+        alert("Achievement unlocked: " + name);
+    }
 }
