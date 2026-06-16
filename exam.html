@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/bio-learn.css">
+</head>
+<body>
+    <header>
+        <a href="bio-learn.html" class="btn">Main page</a>
+        <h1>Exam Mode</h1>
+    </header>
+    <main class="test-container">
+        <div class="progress-info">
+            <span id="progressText">Question 1 / 1</span>
+        </div>
+        <div class="progress">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+        <div id="examTimer" class="timer">300</div>
+        <div id="question"></div>
+        <div id="options"></div>
+        <button id="nextBtn">Submit</button>
+        <div id="result"></div>
+    </main>
+    
+    <script src="js/data.js"></script>
+    <script src="js/exam.js"></script>
+</body>
+</html>
