@@ -4,7 +4,7 @@ const resultEl = document.getElementById("result");
 const nextBtn = document.getElementById("nextBtn");
 const progressBar = document.getElementById("progressBar");
 const progressText = document.getElementById("progressText");
-const examTimer = document.getElementById("examTimer");
+const examTimerEl = document.getElementById("examTimer");
 
 let examQuestions = [];
 let current = 0;
@@ -72,3 +72,95 @@ function startExamTimer(){
         }
     }, 1000);
 }
+
+function startExam(){
+    examQuestions = topicsData.flatMap(topic => topic.questions.map(q => ({
+        ...q,
+        topicTitle: topic.title
+    }))).sort(() => Math.random() - 0.5).slice(0, 10);
+    startExamTimer();
+    showQuestion();
+}
+
+function selectAnswer(index){
+    const q = examQuestions[current];
+    if (!q.selected) q.selected = [];
+    if (q.selected.includes(index)){
+        q.selected = q.selected.filter(i => i !== index);
+    } else{
+        q.selected.push(index);
+    }
+    updateSelectionUI(q);
+}
+ function updateSelectionUI(q){
+    const buttons = optionsEl.querySelectorAll("button");
+    buttons.forEach((btn, i) => {
+        btn.classList.toggle("selected", q.selected?.includes(i));
+    });
+    const images = optionsEl.querySelectorAll(".answer-image");
+    images.forEach((img, i) => {
+        img.classList.toggle("selected-img", q.seleected?.includes(i));
+    });
+ }
+ nextBtn.onclick = () => {
+    const q = examQuestions[current];
+    if (!isAnswered){
+        let correct = false;
+        if (q.answers){
+            const selected = q.selected || [];
+            correct = selected.length === q.answers.length && selected.every(i => q.answers.includes(i));
+        } else{
+            correct = q.selected && q.selected[0] === q.answer;
+        }
+        if (correct) score++;
+        isAnswered = true;
+        nextBtn.textContent = "Next";
+        resultEl.innerHTML = `
+        <p class="explanation">
+            ${q.explanation || "Review this concept"}
+        </p>`;
+    }
+    else{
+        current++;
+        if(current < examQuestions.length){
+            isAnswered = false;
+            nextBtn.textContent = "Submit";
+            showQuestion();
+        } else{
+            finishExam();
+        }
+    }
+ }
+ 
+ function finishExam(){
+    clearInterval(examInterval);
+    questionEl.innerHTML = "";
+    optionsEl.innerHTML = "";
+    nextBtn.style.display = "none";
+    const percent = Math.round((score / examQuestions.length) * 100);
+    let grade = "F";
+    if (percent >= 90) grade = "A";
+    else if (percent >= 80) grade = "B";
+    else if (percent >= 70) grade = "C";
+    else if (percent >= 60) grade = "D";
+    resultEl.innerHTML = `
+    <h2>Exam Result</h2>
+    <p>Score: ${score}/${examQuestions.length}</p>
+    <p>Percent: ${percent}</p>
+    <p>Grade: ${grade}</p>
+    <a href="leader-board.html". Go to leaderboard</a>`;
+    saveExamResult(percent, grade);
+ }
+
+ function saveExamResult(percent, grade){
+    const data = JSON.parse(localStorage.getItem("tests")) || [];
+    data.push({
+        topic: "Exam Mode",
+        score,
+        total: examQuestions.length,
+        percent,
+        grade,
+        date: new Date().toISOString().split("T")[0]
+    });
+    localStorage.setItem("tests", JSON.stringify(data));
+ }
