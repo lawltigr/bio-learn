@@ -553,6 +553,28 @@ body{
     font-size: 18px;
     font-weight: bold;
 }
+.certificate{
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 50px;
+    background: white;
+    text-align: center;
+    border: 8px solid #2e7d32;
+    border-radius: 20px;
+}
+.certificate h1{
+    color: #2e7d32;
+    font-size: 42px;
+}
+
+@media print{
+    .leaderboard-home{
+        display: none;
+    }
+    body{
+        background: white;
+    }
+}
 
 @media(max-width: 600px){
     .nav-btn.prev{ left: 10px; }

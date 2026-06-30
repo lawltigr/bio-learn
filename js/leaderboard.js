@@ -1,6 +1,32 @@
 const data = JSON.parse(localStorage.getItem("tests")) || [];
 data.sort((a,b)=> b.precent - a.percent);
 const container = document.getElementById("leaderboard");
+const exportBtn = document.getElementById("exportResultsCSV");
+if (exportBtn){
+    exportBtn.addEventListener("click", exportResultsCSV);
+}
+
+function exportResultsCSV(){
+    const data = JSON.parse(localStorage.getItem("tests")) || [];
+    if (data.length === 0){
+        alert("No results to export");
+        return;
+    }
+    let csv = "Topic,Score,Total,Percent,Date\n";
+    data.forEach(item =>{
+        csv += `${item.topic},${item.score},${item.total},${item.percent},${item.date}\n`;
+    });
+    const blob = new Blob([csv], {
+        type: "text/csv"
+    });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "biolearn-results.csv";
+    a.click();
+    URL.revokeObjectURL(url);
+}
+
 container.innerHTML = `
     <table class="leaderboard-table"> 
         <tr>
