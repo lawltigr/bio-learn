@@ -593,6 +593,26 @@ body{
     border-radius: 14px;
     text-align: center;
 }
+.certificate-card{
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+.certificate-card h3{
+    color: #2e7d32;
+    margin-top: 0;
+}
+.certificate-card a{
+    display: inline-block;
+    margin-top: 10px;
+    text-decoration: none;
+    background: #2e7d32;
+    color: white;
+    padding: 10px 18px;
+    border-radius: 8px;
+}
 
 @media print{
     .leaderboard-home{

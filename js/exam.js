@@ -150,6 +150,7 @@ function selectAnswer(index){
     <p>Grade: ${grade}</p>
     <a href="leader-board.html". Go to leaderboard</a>`;
     saveExamResult(percent, grade);
+    saveCertificate(percent, grade);
  }
 
  function saveExamResult(percent, grade){
@@ -163,4 +164,20 @@ function selectAnswer(index){
         date: new Date().toISOString().split("T")[0]
     });
     localStorage.setItem("tests", JSON.stringify(data));
+ }
+
+ function saveCertificate(percent, grade){
+    const certificates = JSON.parse(localStorage.getItem("certificates")) || [];
+    const certificate = {
+        id: crypto.randomUUID(),
+        number: "CERT-" + Date.now(),
+        exam: "Exam Mode",
+        score,
+        total: examQuestions.length,
+        percent,
+        grade,
+        date: new Date().toLocaleDateString()
+    };
+    certificates.push(certificate);
+    localStorage.setItem("certificates", JSON.stringify(certificates));
  }
