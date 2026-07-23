@@ -12,8 +12,12 @@
         <p>This certificates that the student completed</p>
         <h2>BioLearn Exam Mode</h2>
         <div id="certificateData"></div>
-        <button onclick="window.print()" class="leaderboard-home">Print / Save as PDF</button>
+        <button onclick="window.print()" class="leaderboard-home">Print</button>
+        <div class="certificate-actions">
+            <button id="downloadBtn">Download PDF</button>
+        </div>
     </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="js/certificate.js"></script>
 </body>
 </html>

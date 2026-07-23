@@ -168,16 +168,19 @@ function selectAnswer(index){
 
  function saveCertificate(percent, grade){
     const certificates = JSON.parse(localStorage.getItem("certificates")) || [];
+    const id = crypto.randomUUID();
     const certificate = {
-        id: crypto.randomUUID(),
-        number: "CERT-" + Date.now(),
-        exam: "Exam Mode",
-        score,
+        id: id,
+        number: "BIO-" + new Date().getFullYear() + "-" + String(certificates.length + 1).padStart(6, "0"),
+        student: "Student",
+        exam: "Biology Final Exam",
+        score: score,
         total: examQuestions.length,
-        percent,
-        grade,
+        percent: percent,
+        grade: grade,
         date: new Date().toLocaleDateString()
     };
     certificates.push(certificate);
     localStorage.setItem("certificates", JSON.stringify(certificates));
+    window.location.href= `certificate.html?id=${id}`;
  }
