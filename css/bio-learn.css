@@ -613,6 +613,73 @@ body{
     padding: 10px 18px;
     border-radius: 8px;
 }
+.certificate{
+    width: 1000px;
+    min-height: 700px;
+}
+.certificate{
+    border: 8px solid #d4af37;
+    padding: 18px;
+    position: relative;
+}
+.certificate::before{
+    content: "";
+    position: absolute;
+    inset: 15px;
+    border: 2px solid #d4af37;
+}
+.logo{
+    font-size: 18px;
+    letter-spacing: 6px;
+    color: #1d3557;
+    font-weight: 700;
+}
+.title{
+    font-size: 52px;
+    font-weight: 700;
+    color: #1d3557;
+    margin-top: 30px;
+    text-transform: uppercase;
+}
+.student-name{
+    font-size: 42px;
+    font-family: Georgia, serif;
+    color: #222;
+    margin: 35px 0;
+    border-bottom: 2px solid #d4af37;
+    display: inline-block;
+    padding: 10px 60px;
+}
+.info-grid{
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 40px;
+}
+.info-card{
+    width: 170px;
+    padding: 18px;
+    border-radius: 12px;
+    background: #f8f9fa;
+    text-align: center;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+}
+.seal{
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: #f8e9a7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    color: #8b6b00;
+}
+.signatures{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 80px;
+}
 
 @media print{
     .leaderboard-home{
