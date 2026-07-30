@@ -15,6 +15,8 @@
         <p class="subtitle">This certificates that the student completed</p>
         <h2>BioLearn Exam Mode</h2>
         <div class="student-name" id="studentName">John Smith</div>
+        <p class="completed">for successfully completing</p>
+        <div class="exam-name" id="examName"></div>
         <p class="description">for successfully completing the Biology Final Exam</p>
         <div class="info-grid">
             <div class="info-card">
@@ -23,11 +25,35 @@
             </div>
             <div class="info-card">
                 <span class="label">Result</span>
-                <span class="value" id="score">96%</span>
+                <span class="value" id="percent">96%</span>
             </div>
             <div class="info-card">
                 <span class="label">Grade</span>
-                <span class="value" id="score">A</span>
+                <span class="value" id="grade">A</span>
+            </div>
+        </div>
+        <div class="certificate-footer">
+            <div class="certificate-info">
+                <p><strong>Certificate #</strong></p>
+                <p id="certificateNumber"></p>
+                <br>
+                <p><strong>Issued</strong></p>
+                <p id="certificateDate"></p>
+            </div>
+            <div class="seal">
+                BIO<br>
+                LEARN
+            </div>
+        </div>
+        <div class="signatures">
+            <div class="signature">
+                <div class="line"></div>
+                <span>Instructor</span>
+            </div>
+            <div class="signature">
+                <div class="line">
+                    <span>Director</span>
+                </div>
             </div>
         </div>
         <div id="certificateData"></div>
