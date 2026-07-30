@@ -1,0 +1,89 @@
+.actions button{
+    padding: 12px 24px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    background: #0d6efd;
+    color: white;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.actions button:hover{
+    transform: translateY(-2px);
+    background: #0b5ed7;
+}
+
+.signature{
+    width:220px;
+    text-align: center;
+}
+
+.line{
+    border-top: 2px solid #444;
+    margin-bottom: 10px;
+}
+
+.actions{
+    margin-top: 25px;
+    display: flex;
+    gap: 15px;
+}
+
+.seal{
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    border: 6px solid #d4af37;
+    background: #f9e38a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    color: #8b6500;
+}
+
+.signatures{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 70px;
+}
+
+.label{
+    display: block;
+    color: #777;
+    font-size: 14px;
+}
+
+.value{
+    display: block;
+    margin-top: 10px;
+    font-size: 28px;
+    color: #1d3557;
+    font-weight: bold;
+}
+
+.certificate-footer{
+    margin-top: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.certificate-info{
+    text-align: left;
+}
+
+.info-grid{
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin-top: 20px;
+}
+
+.info-card{
+    width: 170px;
+    background: #f8f9fb;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+}
