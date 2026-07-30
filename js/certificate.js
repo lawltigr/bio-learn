@@ -12,10 +12,16 @@
 //     `;
 // }
 
+const certificate = certificates.find(c=> c.id === id);
+document.getElementById("studentName").textContent = certificate.student;
+document.getElementById("score").textContent = `${certificate.score} / ${certificate.total}`;
+document.getElementById("percent").textContent = `${certificate.percent}%`;
+document.getElementById("grade").textContent = certificate.grade;
+
 const params = new URLSearchParams(window.location.search);
 const id = params.get("id");
 const certificates = JSON.parse(localStorage.getItem("certificates")) || [];
-const certificate = certificates.find(c=> c.id === id);
+// const certificate = certificates.find(c=> c.id === id);
 const container = document.getElementById("certificateData");
 if (!certificate){
     container.innerHTML=`
