@@ -168,11 +168,12 @@ function selectAnswer(index){
 
  function saveCertificate(percent, grade){
     const certificates = JSON.parse(localStorage.getItem("certificates")) || [];
+    const student = JSON.parse(localStorage.getItem("student"));
     const id = crypto.randomUUID();
     const certificate = {
         id: id,
         number: "BIO-" + new Date().getFullYear() + "-" + String(certificates.length + 1).padStart(6, "0"),
-        student: "Student",
+        student: `${student.firstName} ${student.lastName}`,
         exam: "Biology Final Exam",
         score: score,
         total: examQuestions.length,
