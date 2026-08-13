@@ -168,12 +168,16 @@ function selectAnswer(index){
 
  function saveCertificate(percent, grade){
     const certificates = JSON.parse(localStorage.getItem("certificates")) || [];
+    if (!student){
+        alert("Student profile not found.");
+        return;
+    }
     const student = JSON.parse(localStorage.getItem("student"));
     const id = crypto.randomUUID();
     const certificate = {
         id,
-        number,
-        student: student.fullName,
+        number: "BIO-" + new Date().getFullYear() + "-" + String(certificates.length + 1).padStart(6, "0"),
+        student: `${student.firstName} ${student.lastName}`,
         group: student.group,
         exam: "Biology Final Exam",
         score,

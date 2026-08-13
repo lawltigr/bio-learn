@@ -32,7 +32,9 @@ function saveStudent(){
         group: group,
         createdAt: new Date().toISOString()
     };
+    console.log(student);
     localStorage.setItem("student", JSON.stringify(student));
+    console.log(localStorage.getItem("student"));
     window.location.href = "bio-learn.html";
 }
 
