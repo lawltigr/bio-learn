@@ -1,5 +1,8 @@
 const searchInput = document.getElementById("search");
-let topicsData = [];
+const student = JSON.parse(localStorage.getItem("student"));
+if (!student){
+    window.location.href = "index.html";
+}
 
 function renderTopics(data=topicsData){
     const container = document.getElementById("topics");
