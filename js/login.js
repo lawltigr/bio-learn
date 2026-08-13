@@ -1,6 +1,10 @@
 const firstName = document.getElementById("firstName");
 const lastName = document.getElementById("lastName");
 const group = document.getElementById("group");
+const student = JSON.parse(localStorage.getItem("student"));
+if (student){
+    window.location.href="bio-learn.html";
+}
 document.getElementById("startBtn").addEventListener("click", saveStudent);
 
 function saveStudent(){
