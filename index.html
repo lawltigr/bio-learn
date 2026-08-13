@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="welcome-card">
+        <h1>BioLearn</h1>
+        <p class="subtitle">Welcome to Biology Learning Platform</p>
+        <button id="studentBtn" class="main-btn">
+            Student
+        </button>
+        <button id="adminBtn" class="main-btn admin">
+            Administrator
+        </button>
+    </div>
+    <div id="studentModal" class="modal hidden">
+        <div class="modal-content">
+            <h2>Student Information</h2>
+            <input id="firstName" placeholder="First name">
+            <input id="lastName" placeholder="Last name">
+            <input id="group" placeholder="Group (optional)">
+            <button id="startLearning">
+                Start Learning
+            </button>
+        </div>
+    </div>
+    
+    <div id="adminModal" class="modal hidden">
+        <div class="modal-content">
+            <h2>Administrator</h2>
+            <input id="adminPassword"  type="password" placeholder="Password">
+            <button id="adminLogin">
+                Login
+            </button>
+        </div>
+    </div>
+    <script src="js/index.js"></script>
+</body>
+</html>
