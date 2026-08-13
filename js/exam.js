@@ -171,14 +171,15 @@ function selectAnswer(index){
     const student = JSON.parse(localStorage.getItem("student"));
     const id = crypto.randomUUID();
     const certificate = {
-        id: id,
-        number: "BIO-" + new Date().getFullYear() + "-" + String(certificates.length + 1).padStart(6, "0"),
-        student: `${student.firstName} ${student.lastName}`,
+        id,
+        number,
+        student: student.fullName,
+        group: student.group,
         exam: "Biology Final Exam",
-        score: score,
+        score,
         total: examQuestions.length,
-        percent: percent,
-        grade: grade,
+        percent,
+        grade,
         date: new Date().toLocaleDateString()
     };
     certificates.push(certificate);
