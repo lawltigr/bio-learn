@@ -1,0 +1,117 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+#firstName, #lastName, #group, #adminPassword{
+    width: 100%;
+    padding: 14px 15px;
+    margin-bottom: 13px;
+    border: 1px solid #d8e0ea;
+    border-radius: 10px;
+    font-size: 15px;
+    outline: none;
+    box-sizing: border-box;
+}
+#firstName:focus, #lastName:focus, #group:focus, #adminPassword:focus{
+    border-color: #1769e0;
+    box-shadow: 0 0 0 3px rgba(23,105,224, 0.12);
+}
+body{
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #1f2937;
+    background-color: linear-gradient(135deg, #eef6ff 0%, #f8fbff 50%, #e8f3ff 100%);
+}
+.welcome-card{
+    width: 440px;
+    background: #ffffff;
+    padding: 42px;
+    border-radius: 24px;
+    box-shadow: 0 20px 50px rgba(20, 60, 100, 0.12);
+    text-align: center;
+}
+.welcome-card h1{
+    font-size: 38px;
+    color: #1769e0;
+    margin-bottom: 10px;
+}
+.subtitle{
+    font-size: 15px;
+    color: #718096;
+    margin-bottom: 32px;
+}
+.role-buttons{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 30px;
+}
+.role-btn{
+    padding: 14px;
+    border: 1px solid #dce5f0;
+    border-radius: 12px;
+    background: #f8fbff;
+    color: #344054;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.role-btn:hover{
+    border-color: #1769e0;
+    color: #1769e0;
+    transform: translateY(-2px);
+}
+.role-btn.active{
+    background: #1769e0;
+    color: white;
+    border-color: #1769e0;
+}
+
+.form-section{
+    margin-left: 20px;
+}
+
+.form-section input{
+    width: 100%;
+    padding: 14px 15px;
+    margin-bottom: 13px;
+    border: 1px solid #d8e0ea;
+    border-radius: 10px;
+    font-size: 15px;
+    outline: none;
+    transition: 0.2s;
+}
+.form-section input:focus{
+    border-color: #1769e0;
+    box-shadow: 0 0 0 3px rgba(23,105,224,0.12);
+}
+.primary-btn {
+    width: 100%;
+    padding: 14px;
+    margin-top: 5px;
+    border: none;
+    border-radius: 10px;
+    background: #1769e0;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.primary-btn:hover{
+    background: #0f5bc9;
+    transform: translateY(-1px);
+    box-shadow: 0 7px 18px rgba(23,105,224,0.22);
+}
+.hidden{
+    display: none;
+}
+.footer-text{
+    margin-top: 28px;
+    color: #98a2b3;
+    font-size: 12px;
+}

@@ -9,10 +9,16 @@ const adminModal = document.getElementById("adminModal");
 
 studentBtn.addEventListener("click", () => {
     studentModal.classList.remove("hidden");
+    adminModal.classList.add("hidden");
+    studentBtn.classList.add("active");
+    adminBtn.classList.remove("active");
 });
 
 adminBtn.addEventListener("click", () => {
     adminModal.classList.remove("hidden");
+    studentModal.classList.add("hidden");
+    adminBtn.classList.add("active");
+    studentBtn.classList.remove("active");
 });
 
 document.getElementById("startLearning").addEventListener("click", saveStudent);

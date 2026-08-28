@@ -109,3 +109,27 @@ body{
     cursor: pointer;
     transition: 0.3s;
 }
+#editBtn{
+    background: #198754;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 5px;
+    font-size: 15px;
+    margin-top: 20px;
+}
+#editBtn:hover{
+    background: #157347;
+}
+#logoutBtn{
+    background: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 5px;
+    font-size: 15px;
+    margin-top: 20px;
+}
+#logoutBtn:hover{
+    background: #bb2d3b;
+}
