@@ -154,15 +154,24 @@ function selectAnswer(index){
  }
 
  function saveExamResult(percent, grade){
+    const student = JSON.parse(localStorage.getItem("student"));
+    if (!student) {
+        console.error("Student not found");
+        return;
+    }
     const data = JSON.parse(localStorage.getItem("tests")) || [];
-    data.push({
+    const result = {
+        id: crypto.randomUUID(),
+        studentId: student.id,
+        studentName: `${student.firstName} ${student.lastName}`,
         topic: "Exam Mode",
         score,
         total: examQuestions.length,
         percent,
         grade,
         date: new Date().toISOString().split("T")[0]
-    });
+    }
+    data.push(result);
     localStorage.setItem("tests", JSON.stringify(data));
  }
 
@@ -176,6 +185,7 @@ function selectAnswer(index){
     const id = crypto.randomUUID();
     const certificate = {
         id,
+        studentId: student.id,
         number: "BIO-" + new Date().getFullYear() + "-" + String(certificates.length + 1).padStart(6, "0"),
         student: `${student.firstName} ${student.lastName}`,
         group: student.group,

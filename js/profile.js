@@ -1,6 +1,8 @@
 const student = JSON.parse(localStorage.getItem("student"));
-const tests = JSON.parse(localStorage.getItem("tests")) || [];
-const certificates = JSON.parse(localStorage.getItem("certificates")) || [];
+const allTests = JSON.parse(localStorage.getItem("tests")) || [];
+const allCertificates = JSON.parse(localStorage.getItem("certificates")) || [];
+const tests = allTests.filter(test => test.studentId === student.id);
+const certificates = allCertificates.filter(certificate => certificate.studentId === student.id);
 const avatar = document.getElementById("avatar");
 const studentName = document.getElementById("studentName");
 const studentGroup = document.getElementById("studentGroup");
