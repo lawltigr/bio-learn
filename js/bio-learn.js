@@ -1,3 +1,11 @@
+const headerStudentName = document.getElementById("headerStudentName");
+const headerStudentGroup = document.getElementById("headerStudentGroup");
+const headerAvatar = document.getElementById("headerAvatar");
+
+headerStudentName.textContent = `${student.firstName} ${student.lastName}`;
+headerStudentGroup.textContent = student.group || "Student";
+headerAvatar.textContent = student.firstName.charAt(0).toUpperCase();
+
 const searchInput = document.getElementById("search");
 const student = JSON.parse(localStorage.getItem("student"));
 if (!student){
