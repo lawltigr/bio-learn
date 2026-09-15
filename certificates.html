@@ -7,10 +7,45 @@
     <title>Document</title>
 </head>
 <body>
-    <main class="leaderboard-page">
-        <a href="bio-learn.html" class="leaderboard-home">Home</a>
-        <h1 class="leaderboard-title">My certificates</h1>
-        <div id="certificates"></div>
+    <header class="site-header">
+        <div class="header-content">
+            <a href="bio-learn.html" class="brand">
+                <div class="brand-icon">B</div>
+                <div class="brand-text">
+                    <strong>BioLearn</strong>
+                    <small>Interactive Biology Learning</small>
+                </div>
+            </a>
+            <div class="user-panel">
+                <a href="profie.html" class="user-profile">
+                    <div class="user-avatar" id="headerAvatar"></div>
+                    <div class="user-data">
+                        <span id="headerStudentName"></span>
+                        <small id="headerStudentGroup"></small>
+                    </div>
+                </a>
+                <a href="bio-learn.html" class="back-btn">Back</a>
+            </div>
+        </div>
+    </header>
+    <main class="page-container">
+        <div class="page-heading">
+            <div>
+                <h1>My Certificates</h1>
+                <p>Certificates earned after successfully completing BioLearn exams.</p>
+            </div>
+            <div class="certificate-counter">
+                <span id="certificateCount">0</span>
+                <small>Certificates</small>
+            </div>
+        </div>
+        <div id="certificateList" class="certificate-list"></div>
+        <div id="emptyState" class="empty-state hidden">
+            <div class="empty-icon"></div>
+            <h2>No certificates yet</h2>
+            <p>Complete the final exam to earn your first certificate.</p>
+            <a href="exam.html" class="exam-btn">Take Exam</a>
+        </div>
     </main>
     <script src="js/certificates.js"></script>
 </body>

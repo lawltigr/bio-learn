@@ -1,17 +1,29 @@
-const certificates = JSON.parse(localStorage.getItem("certificates")) || [];
-const container = document.getElementById("certificates");
-if(certificates.length === 0){
-    container.innerHTML = "<p>No certificates yet</p>";
+const student = JSON.parse(localStorage.getItem("student"));
+if (!student) {
+    window.location.href = "index.html";
 }
-else{
-    container.innerHTML = certificates.map(c=>`
-    <div class="certificate-card">
-        <h3>${c.number}</h3>
-        <p><b>Exam:</b> ${c.exam}</p>
-        <p><b>Result:</b> ${c.percent}</p>
-        <p><b>Grade:</b> ${c.grade}</p>
-        <p><b>Date:</b> ${c.date}</p>
-        <a href="certificate.html?id=${c.id}">Open</a>
-    </div>
-    `).join("");
+const headerStudentName = document.getElementById("headerStudentName");
+const headerStudentGroup = document.getElementById("headerStudentGroup");
+const headerAvatar = document.getElementById("headerAvatar");
+
+headerStudentName.textContent = `${student.firstName} ${student.lastName}`;
+headerStudentGroup.textContent = student.group || "Student";
+headerAvatar.textContent = student.firstName.charAt(0).toUpperCase();
+
+const allCertificates = JSON.parse(localStorage.getItem("certificates")) || [];
+const certificates = allCertificates.filter(certificate => certificate.studentId === student.id);
+const certificateList = document.getElementById("certificateList");
+const emptyState = document.getElementById("emptyState");
+const certificateCount = document.getElementById("certificateCount");
+certificateCount.textContent = certificates.length;
+if (certificates.length === 0) {
+    certificateList.style.display = "none";
+    emptyState.classList.remove("hidden");
+} else{
+    emptyState.classList.add("hidden");
+    renderCertificates();
+}
+
+function renderCertificates(){
+    
 }
