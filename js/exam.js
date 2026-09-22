@@ -5,6 +5,10 @@ const nextBtn = document.getElementById("nextBtn");
 const progressBar = document.getElementById("progressBar");
 const progressText = document.getElementById("progressText");
 const examTimerEl = document.getElementById("examTimer");
+const student  = JSON.parse(localStorage.getItem("student"));
+if(!student){
+    window.location.href = "index.html";
+}
 
 let examQuestions = [];
 let current = 0;
@@ -19,6 +23,11 @@ function startExam(){
     })))
     .sort(() => Math.random() - 0.5)
     .slice(0,10);
+    if (examQuestions.length === 0){
+        resultEl.innerHTML = `
+        <p>No exam questions available.</p>`;
+        return;
+    }
     startExamTimer();
     showQuestion();
 }
@@ -53,6 +62,7 @@ function showQuestion(){
             optionsEl.appendChild(btn);
         });
     }
+    updateSelectionUI(q);
     updateProgress();
 }
 function updateProgress(){
@@ -92,16 +102,16 @@ function selectAnswer(index){
     }
     updateSelectionUI(q);
 }
- function updateSelectionUI(q){
+function updateSelectionUI(q){
     const buttons = optionsEl.querySelectorAll("button");
     buttons.forEach((btn, i) => {
         btn.classList.toggle("selected", q.selected?.includes(i));
     });
     const images = optionsEl.querySelectorAll(".answer-image");
     images.forEach((img, i) => {
-        img.classList.toggle("selected-img", q.seleected?.includes(i));
+        img.classList.toggle("selected-img", q.selected?.includes(i));
     });
- }
+}
  nextBtn.onclick = () => {
     const q = examQuestions[current];
     if (!isAnswered){
@@ -177,11 +187,11 @@ function selectAnswer(index){
 
  function saveCertificate(percent, grade){
     const certificates = JSON.parse(localStorage.getItem("certificates")) || [];
+    const student = JSON.parse(localStorage.getItem("student"));
     if (!student){
         alert("Student profile not found.");
         return;
     }
-    const student = JSON.parse(localStorage.getItem("student"));
     const id = crypto.randomUUID();
     const certificate = {
         id,

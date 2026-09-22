@@ -5,7 +5,7 @@ const container = document.getElementById("certificateData");
 const certificate = certificates.find(c=> c.id === id);
 if (!certificate) {
     document.body.innerHTML = `<h2>Certificate not found.</h2>`;
-    throw new error("Certificate not found");
+    throw new Error("Certificate not found");
 }
 document.getElementById("examName").textContent = certificate.exam;
 document.getElementById("certificateNumber").textContent = certificate.number;
