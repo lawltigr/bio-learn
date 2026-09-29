@@ -12,15 +12,18 @@ headerAvatar.textContent = student.firstName.charAt(0).toUpperCase();
 
 const allCertificates = JSON.parse(localStorage.getItem("certificates")) || [];
 const certificates = allCertificates.filter(certificate => certificate.studentId === student.id);
+
 const certificateList = document.getElementById("certificateList");
 const emptyState = document.getElementById("emptyState");
 const certificateCount = document.getElementById("certificateCount");
 certificateCount.textContent = certificates.length;
 if (certificates.length === 0) {
+    certificateList.innerHTML = "";
     certificateList.style.display = "none";
-    emptyState.classList.remove("hidden");
+    emptyState.style.display = "block";
 } else{
-    emptyState.classList.add("hidden");
+    certificateList.style.display = "grid";
+    emptyState.style.display = "none";
     renderCertificates();
 }
 
@@ -29,6 +32,7 @@ function renderCertificates(){
     const sortedCertificates = [...certificates].reverse();
     sortedCertificates.forEach(certificate => {
         const card = document.createElement("article");
+        card.className = "certificate-card";
         card.innerHTML = `
             <div class="certified-badge">
                 CERTIFIED
