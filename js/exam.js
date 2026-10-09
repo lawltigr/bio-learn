@@ -16,6 +16,8 @@ let score = 0;
 let isAnswered = false;
 let examTime = 300;
 let examInterval = null;
+const PASSING_SCORE = 60;
+
 loadData(startExam);
 
 function startExam(){
@@ -143,6 +145,10 @@ function updateSelectionUI(q){
  }
  
  function finishExam(){
+    if (examFinished) {
+        return;
+    }
+    examFinished = true;
     clearInterval(examInterval);
     questionEl.innerHTML = "";
     optionsEl.innerHTML = "";
@@ -153,14 +159,47 @@ function updateSelectionUI(q){
     else if (percent >= 80) grade = "B";
     else if (percent >= 70) grade = "C";
     else if (percent >= 60) grade = "D";
-    resultEl.innerHTML = `
-    <h2>Exam Result</h2>
-    <p>Score: ${score}/${examQuestions.length}</p>
-    <p>Percent: ${percent}</p>
-    <p>Grade: ${grade}</p>
-    <a href="leader-board.html". Go to leaderboard</a>`;
-    saveExamResult(percent, grade);
-    saveCertificate(percent, grade);
+    const passed = percent >= PASSING_SCORE;
+    saveExamResult(percent,grade, passed)
+    if (passed){
+        const certificateId = saveCertificate(percent, grade);
+        resultEl.innerHTML = `
+        <div class="exam-result passed">
+            <h2>Exam Passed!</h2>
+            <p>Congratulations! You passed the exam.</p>
+            <div class="result-stats">
+                <p>Score: ${score}/${examQuestions.length}</p>
+                <p>Result: ${percent}%</p>
+                <p>Grade: ${grade}</p>
+            </div>
+            <p class="result-message">Your certificate is ready</p>
+            <div class="result-actions">
+            ${
+                certificateId
+                ? `<a href="certificate.html?id=${encodeURIComponent(certificateId)}" class="result-btn">View Certificate</a>`
+                : ""
+            }
+            <a href="certificates.html" class="secondary-btn">My Certificates</a>
+        </div>
+            `
+    } else{
+        resultEl.innerHTML = `
+        <div class="exam-result failed">
+            <h2>Exam Not Passed</h2>
+            <p>You need at least ${PASSING_SCORE}% to pass.</p>
+            <div class="result-stats">
+                <p>Score: ${score}/${examQuestions.length}</p>
+                <p>Result: ${percent}%</p>
+                <p>Grade: ${grade}</p>
+            </div>
+            <p class="result-message">Keep practicing and try again!</p>
+            <div class="result-actions">
+                <a href="exam.html" class="secondary-btn">Back to Topics</a>
+            </div>
+        </div>
+        `
+    }
+
  }
 
  function saveExamResult(percent, grade){
