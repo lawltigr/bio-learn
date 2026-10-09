@@ -17,6 +17,7 @@ let isAnswered = false;
 let examTime = 300;
 let examInterval = null;
 const PASSING_SCORE = 60;
+let examFinished = false;
 
 loadData(startExam);
 
@@ -202,13 +203,13 @@ function updateSelectionUI(q){
 
  }
 
- function saveExamResult(percent, grade){
+ function saveExamResult(percent, grade, passed){
     const student = JSON.parse(localStorage.getItem("student"));
     if (!student) {
         console.error("Student not found");
         return;
     }
-    const data = JSON.parse(localStorage.getItem("tests")) || [];
+    const tests = JSON.parse(localStorage.getItem("tests")) || [];
     const result = {
         id: crypto.randomUUID(),
         studentId: student.id,
@@ -218,10 +219,11 @@ function updateSelectionUI(q){
         total: examQuestions.length,
         percent,
         grade,
+        passed,
         date: new Date().toISOString().split("T")[0]
     }
-    data.push(result);
-    localStorage.setItem("tests", JSON.stringify(data));
+    tests.push(result);
+    localStorage.setItem("tests", JSON.stringify(tests));
  }
 
  function saveCertificate(percent, grade){
@@ -247,5 +249,5 @@ function updateSelectionUI(q){
     };
     certificates.push(certificate);
     localStorage.setItem("certificates", JSON.stringify(certificates));
-    window.location.href= `certificate.html?id=${id}`;
+    return id;
  }

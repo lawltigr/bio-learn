@@ -1,0 +1,50 @@
+.exam-result {
+    max-width: 600px;
+    margin: 300px auto;
+    padding: 35px;
+    background: white;
+    border-radius: 18px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.exam-result h2{
+    font-size: 28px;
+    margin-bottom: 15px;
+}
+
+.exam-result.passed h2{
+    color: #198754;
+}
+
+.exam-result.failed h2{
+    color: #dc3545;
+}
+
+.result-stats{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin: 25px 0;
+    padding: 20px;
+    background: #f6f8fb;
+    border-radius: 12px;
+}
+
+.result-stats p{
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.result-message{
+    margin-bottom: 25px;
+    color: #667085;
+}
+
+.result-actions{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
