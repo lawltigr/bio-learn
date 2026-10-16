@@ -48,3 +48,30 @@
     flex-wrap: wrap;
     gap: 12px;
 }
+
+.result-btn, .secondary-btn{
+    display: inline-block;
+    padding: 13px 22px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.result-btn{
+    background: #1769e0;
+    color: white;
+}
+
+.result-btn:hover{
+    background: #0f5bc9;
+}
+.secondary-btn {
+    background: #eef2f7;
+    color: #344054;
+}
+
+.secondary-btn:hover{
+    background: #e0e7f0;
+}
