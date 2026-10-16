@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bio-learn.css">
+    <link rel="stylesheet" href="css/exam-history.css">
+    <title>Document</title>
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-coontent">
+            <a href="bio-learn.html" class="brand">
+                <div class="brand-icon">B</div>
+                <div class="brand-text">
+                    <strong>BioLearn</strong>
+                    <small>Interactive Biology Learning</small>
+                </div>
+            </a>
+            <div class="user-panel">
+                <a href="profile.html" class="user-profile">
+                    <div class="user-avatar" id="headerAvatar"></div>
+                    <div class="user-data">
+                        <span id="headerStudentName"></span>
+                        <small id="headerStudentGroup"></small>
+                    </div>
+                </a>
+                <a href="bio-learn.html" class="back-btn">Back</a>
+            </div>
+        </div>
+    </header>
+    <main class="history-container">
+        <div class="page-heading">
+            <div>
+                <h1>Exam History</h1>
+                <p>Track your exam attempts and learning progress.</p>
+            </div>
+            <a href="exam.html" class="take-exam-btn">Take Exam</a>
+        </div>
+        <div class="history-stats">
+            <div class="stat-card">
+                <small>Total Attempts</small>
+                <strong id="totalAttempts">0</strong>
+            </div>
+            <div class="stat-card">
+                <small>Passed</small>
+                <strong id="passedCount">0</strong>
+            </div>
+            <div class="stat-card">
+                <small>Failed</small>
+                <strong id="failedCount">0</strong>
+            </div>
+            <div class="stat-card">
+                <small>Average Score</small>
+                <strong id="averageScore">0%</strong>
+            </div>
+            <div class="history-section">
+                <div class="section-heading">
+                    <h2>All Attempts</h2>
+                    <select id="statusFilter">
+                        <option value="all">All Results</option>
+                        <option value="passed">Passed</option>
+                        <option value="failed">Failed</option>
+                    </select>
+                </div>
+                <div class="table-wrapper">
+                    <table class="history-table">
+                        <thead>
+                            <tr>
+                                <th>Exam</th>
+                                <th>Date</th>
+                                <th>Score</th>
+                                <th>Result</th>
+                                <th>Grade</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="historyBody"></tbody>
+                    </table>
+                </div>
+                <div id="emptyHistory" class="empty-history" hidden>
+                    <h3>No exam attempts found</h3>
+                    <p>Complete an exam to see your results here</p>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="js/exam-history.js"></script>
+</body>
+</html>
