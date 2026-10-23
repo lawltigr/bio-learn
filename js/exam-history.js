@@ -1,4 +1,4 @@
-const student = JSOn.parse(localStorage.getItem("student"));
+const student = JSON.parse(localStorage.getItem("student"));
 
 if (!student){
     window.location.replace("index.html");
@@ -61,5 +61,14 @@ function renderHistory(exams, filter) {
             cell.textContent = value;
             row.appendChild(cell);
         });
+        const statusCell = document.createElement("td");
+        const badge = document.createElement("span");
+        badge.className = passed
+            ?"status-badge passed" :"status-badge failed";
+        badge.textContent = passed 
+            ?"Passed" :"Failed";
+        statusCell.appendChild(badge);
+        row.appendChild(statusCell);
+        historyBody.appendChild(row);
     })
 }
