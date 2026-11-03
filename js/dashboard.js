@@ -15,3 +15,63 @@ document.getElementById("avgScore").textContent = `Average: ${avgScore}%`;
 document.getElementById("bestScore").textContent = `Best: ${bestScore}%`;
 document.getElementById("achievementsCount").textContent = `Achievements: ${achievements.length}`;
 document.getElementById("rank").textContent = `Rank: ${rank}`;
+
+function renderExamProgressChart(){
+    const canvas = document.getElementById("examProgressChart");
+    if (!canvas) return;
+    const student = JSON.parse(localStorage.getItem("student"));
+    if (!student) return;
+    const allTests = JSON.parse(localStorage.getItem("tests")) || [];
+    const exams = allTests.filter( test => 
+        test.studentId===student.id && 
+        test.topic === "Exam Mode").sort((a,b) => new Date(a.date) - new Date(b.date));
+    if (exams.length === 0){
+        canvas.parentElement.textContent = "No exam results yet";
+        return;
+    }
+    if (typeof Chart === "undefined"){
+        console.error("Chart.js is not loaded");
+        return;
+    }
+    new Chart(canvas, {
+        type: "line",
+        data: {
+            labels: exams.map((exam, index) => `Attempt ${index + 1}`),
+            datasets: [{
+                label: "Exam Pesult (%)",
+                data: exams.map(exam => Number(exam.percent)),
+                borderColor: "#1769e0",
+                backgroundColor: "rgba(23, 105, 224, 0.1)",
+                borderWidth: 3,
+                tension: 0.3,
+                fill: true,
+                pointRadius: 5,
+                pointHoverRadius: 7
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    min:0,
+                    max:100,
+                    ticks:{
+                        callback: value => `${value}%`
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    display: false
+                },
+                tooltip: {
+                    callbacks: {
+                        label: context => `Result: ${context.passed.y}%`
+                    }
+                }
+            }
+        }
+    })
+}
+renderExamProgressChart();
