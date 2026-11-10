@@ -74,4 +74,30 @@ function renderExamProgressChart(){
         }
     })
 }
+
+function renderDashboardStatistics(){
+    const student = JSON.parse(localStorage.getItem("student"));
+    if (!student){
+        window.location.replace("index.html");
+        return;
+    }
+    console.log("Current student: ", student);
+    console.log("All Tests: ", allTests);
+    console.log("Filtered exams: ", exams);
+    console.log("Certificates: ", certificates);
+    const allTests=JSON.parse(localStorage.getItem("tests")) || [];
+    const allCertificates = JSON.parse(localStorage.getItem("certificates")) || [];
+    const exams = allTests.filter(test => test.studentId === student.id && test.topic === "Exam Mode");
+    const certificates = allCertificates.filter(c => c.studentId === student.id);
+    const total = exams.length;
+    const passed = exams.filter(exam=> exam.passed === true || (exam.passed == null && Number(exam.percent) >= 60)).length;
+    const passRate = total > 0 ? Math.round((passed / total) * 100) : 0;
+    const average = total > 0 ? Math.round(exams.reduce((sum, exam) => sum + Number(exam.percent || 0), 0) / total) : 0;
+
+    document.getElementById("totalExams").textContent = total;
+    document.getElementById("passRate").textContent = `${passRate}%`;
+    document.getElementById("dashboardAverage").textContent = `${average}%`;
+    document.getElementById("dashboardCertificates").textContent = certificates.length;
+}
+
 renderExamProgressChart();
