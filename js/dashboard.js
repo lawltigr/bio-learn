@@ -81,10 +81,6 @@ function renderDashboardStatistics(){
         window.location.replace("index.html");
         return;
     }
-    console.log("Current student: ", student);
-    console.log("All Tests: ", allTests);
-    console.log("Filtered exams: ", exams);
-    console.log("Certificates: ", certificates);
     const allTests=JSON.parse(localStorage.getItem("tests")) || [];
     const allCertificates = JSON.parse(localStorage.getItem("certificates")) || [];
     const exams = allTests.filter(test => test.studentId === student.id && test.topic === "Exam Mode");
@@ -99,5 +95,5 @@ function renderDashboardStatistics(){
     document.getElementById("dashboardAverage").textContent = `${average}%`;
     document.getElementById("dashboardCertificates").textContent = certificates.length;
 }
-
+renderDashboardStatistics();
 renderExamProgressChart();

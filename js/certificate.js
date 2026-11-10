@@ -1,6 +1,22 @@
 const params = new URLSearchParams(window.location.search);
 const id = params.get("id");
+const student = JSON.parse(localStorage.getItem("student"));
 const certificates = JSON.parse(localStorage.getItem("certificates")) || [];
+
+if (!id){
+    window.location.replace("certificates.html");
+}
+else {
+    const certificate = certificates.find(c=> c.id === id);
+    if (!certificate) {
+        document.body.innerHTML = `<h2>Certificate not found.</h2>`;
+        throw new Error("Certificate not found");
+    } else if (!student || certificate.studetId !== student.id){
+        showError("You do not have access to this certificate");
+    } else{
+        renderCertificate(certificate);
+    }
+}
 const container = document.getElementById("certificateData");
 const certificate = certificates.find(c=> c.id === id);
 if (!certificate) {
