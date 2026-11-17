@@ -35,6 +35,24 @@ if (downloadBtn) {
     downloadBtn.addEventListener("click", downloadCertificate);
 }
 
+function showError(message){
+    document.body.innerHTML = `
+        <div style="
+        max-width: 500px;
+        margin: 100px;
+        text-align: center;
+        font-family: Arial, sans-serif;">
+            <h2 id="certificateError></h2>
+            <a href="certificates.html">My Certificates</a>
+        </div>
+    `;
+    // document.getElementById("certificateError").textContent = message;
+    const errorElement = document.getElementById("certificateError");
+    if (errorElement){
+        errorElement.textContent = message;
+    }
+}
+
 
 async function downloadCertificate(){
     const { jsPDF } = window.jspdf;
