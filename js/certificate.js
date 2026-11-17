@@ -11,7 +11,7 @@ else {
     if (!certificate) {
         document.body.innerHTML = `<h2>Certificate not found.</h2>`;
         throw new Error("Certificate not found");
-    } else if (!student || certificate.studetId !== student.id){
+    } else if (!student || certificate.studentId !== student.id){
         showError("You do not have access to this certificate");
     } else{
         renderCertificate(certificate);
@@ -35,6 +35,22 @@ if (downloadBtn) {
     downloadBtn.addEventListener("click", downloadCertificate);
 }
 
+function renderCertificate(certificate){
+    document.getElementById("examName").textContent = certificate.exam;
+    document.getElementById("certificateNumber").textContent = certificate.number;
+    document.getElementById("certificateDate").textContent = certificate.date;
+    document.getElementById("studentName").textContent = certificate.student;
+    document.getElementById("score").textContent = `${certificate.score} / ${certificate.total}`;
+    document.getElementById("percent").textContent = `${certificate.percent}%`;
+    document.getElementById("grade").textContent = certificate.grade;
+    const downloadBtn = document.getElementById("downloadBtn");
+    if (downloadBtn){
+        downloadBtn.addEventListener("click", () => {
+            downloadCertificate(certificate);
+        })
+    }
+}
+
 function showError(message){
     document.body.innerHTML = `
         <div style="
@@ -42,7 +58,7 @@ function showError(message){
         margin: 100px;
         text-align: center;
         font-family: Arial, sans-serif;">
-            <h2 id="certificateError></h2>
+            <h2 id="certificateError"></h2>
             <a href="certificates.html">My Certificates</a>
         </div>
     `;
